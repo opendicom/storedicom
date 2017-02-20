@@ -19,3 +19,10 @@
 #include "dcuid.h"
 #include "dcdict.h"
 #include "dcdeftag.h"
+
+@interface J2KR : NSObject {}
+
++(void)register;
++(BOOL)coerceFileAtPath:(NSString*)srcPath toPath:(NSString*)dstPath withInstitutionName:(NSString*)InstitutionName;
+
+@end

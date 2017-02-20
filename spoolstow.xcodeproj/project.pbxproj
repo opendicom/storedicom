@@ -732,7 +732,6 @@
 		4A169EF91DECA34D007E10B2 /* djdec2k.cc in Sources */ = {isa = PBXBuildFile; fileRef = CEFFFE251286895300D69BB8 /* djdec2k.cc */; };
 		4A169EFF1DECA4C1007E10B2 /* djdijp2k.cc in Sources */ = {isa = PBXBuildFile; fileRef = 4A169EFD1DECA4C1007E10B2 /* djdijp2k.cc */; };
 		4A169F001DECA4C1007E10B2 /* djeijg2k.cc in Sources */ = {isa = PBXBuildFile; fileRef = 4A169EFE1DECA4C1007E10B2 /* djeijg2k.cc */; };
-		4A169F021DECA76D007E10B2 /* J2KR(noCodec).h in Headers */ = {isa = PBXBuildFile; fileRef = 4A169F011DECA76D007E10B2 /* J2KR(noCodec).h */; };
 		4A16A6031DED1900007E10B2 /* osconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = BFBF3AB909B6827D00545F5E /* osconfig.h */; };
 		4A16A6051DED1900007E10B2 /* dcfilefo.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3AD809B6827D00545F5E /* dcfilefo.cc */; };
 		4A16A6061DED1900007E10B2 /* dcxfer.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3B5309B6827F00545F5E /* dcxfer.cc */; };
@@ -1092,9 +1091,11 @@
 		4A16A76A1DED1900007E10B2 /* libkdu_v73R.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A169D7A1DE8B2E4007E10B2 /* libkdu_v73R.a */; };
 		4A16A76B1DED1900007E10B2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1685891DE6584D007E10B2 /* libz.1.2.8.tbd */; };
 		4A16A76C1DED1900007E10B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
-		4A16A7721DED1EF1007E10B2 /* J2KR(noCodec).h in Headers */ = {isa = PBXBuildFile; fileRef = 4A169F011DECA76D007E10B2 /* J2KR(noCodec).h */; };
+		4A1DBBA51E5B814700D45158 /* J2KR.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1DBBA31E5B814700D45158 /* J2KR.h */; };
+		4A1DBBA61E5B814700D45158 /* J2KR.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A1DBBA41E5B814700D45158 /* J2KR.mm */; };
+		4A1DBBA71E5B842A00D45158 /* J2KR.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1DBBA31E5B814700D45158 /* J2KR.h */; };
+		4A1DBBA81E5B843400D45158 /* J2KR.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A1DBBA41E5B814700D45158 /* J2KR.mm */; };
 		4AA0A5F31E48E3A2005B3E9D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA0A5F21E48E3A2005B3E9D /* Security.framework */; };
-		4AE1496E1DF87668001B722F /* J2KR(noCodec).mm in Sources */ = {isa = PBXBuildFile; fileRef = 4AE1496D1DF87668001B722F /* J2KR(noCodec).mm */; };
 		4AEAD24A1CC6E475000FEA7F /* dcfilefo.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3AD809B6827D00545F5E /* dcfilefo.cc */; };
 		4AEAD24B1CC6E475000FEA7F /* dcxfer.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3B5309B6827F00545F5E /* dcxfer.cc */; };
 		4AEAD24C1CC6E475000FEA7F /* dcvrut.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3B5109B6827F00545F5E /* dcvrut.cc */; };
@@ -1476,7 +1477,6 @@
 		4A169EF51DECA012007E10B2 /* dcmtk */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dcmtk; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A169EFD1DECA4C1007E10B2 /* djdijp2k.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = djdijp2k.cc; path = "Binaries/dcmtk-source/dcmjpeg/djdijp2k.cc"; sourceTree = "<group>"; };
 		4A169EFE1DECA4C1007E10B2 /* djeijg2k.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = djeijg2k.cc; path = "Binaries/dcmtk-source/dcmjpeg/djeijg2k.cc"; sourceTree = "<group>"; };
-		4A169F011DECA76D007E10B2 /* J2KR(noCodec).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "J2KR(noCodec).h"; sourceTree = "<group>"; };
 		4A16A1001DECABC1007E10B2 /* cmdlnarg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cmdlnarg.h; path = "Binaries/dcmtk-source/dcmdata/cmdlnarg.h"; sourceTree = "<group>"; };
 		4A16A1011DECABC1007E10B2 /* dcbytstr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dcbytstr.h; path = "Binaries/dcmtk-source/dcmdata/dcbytstr.h"; sourceTree = "<group>"; };
 		4A16A1021DECABC1007E10B2 /* dcchrstr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dcchrstr.h; path = "Binaries/dcmtk-source/dcmdata/dcchrstr.h"; sourceTree = "<group>"; };
@@ -1743,6 +1743,8 @@
 		4A16A2071DECABC5007E10B2 /* ofuoset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofuoset.h; path = "Binaries/dcmtk-source/ofstd/ofuoset.h"; sourceTree = "<group>"; };
 		4A16A76F1DED1900007E10B2 /* spoolstow */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = spoolstow; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A16A7701DED1A64007E10B2 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		4A1DBBA31E5B814700D45158 /* J2KR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = J2KR.h; sourceTree = "<group>"; };
+		4A1DBBA41E5B814700D45158 /* J2KR.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = J2KR.mm; sourceTree = "<group>"; };
 		4A9059EC1CEF908600A9CA2F /* ODvr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODvr.h; sourceTree = "<group>"; };
 		4AA0A5F21E48E3A2005B3E9D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4AC642D81CE57FF500A25E46 /* ODMetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetaInfo.h; sourceTree = "<group>"; };
@@ -1753,7 +1755,6 @@
 		4AC642E21CE6AAF000A25E46 /* ODElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODElement.mm; sourceTree = "<group>"; };
 		4AC642E71CE9775900A25E46 /* ODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODItem.h; sourceTree = "<group>"; };
 		4AC642E81CE9775900A25E46 /* ODItem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODItem.mm; sourceTree = "<group>"; };
-		4AE1496D1DF87668001B722F /* J2KR(noCodec).mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "J2KR(noCodec).mm"; sourceTree = "<group>"; };
 		4AEAD3DA1CC6E475000FEA7F /* KDU */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KDU; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AEAD5711CC6E5A7000FEA7F /* KDU.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KDU.mm; sourceTree = "<group>"; };
 		4AF940611CE5720100551476 /* ODDataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODDataset.h; sourceTree = "<group>"; };
@@ -2440,6 +2441,8 @@
 		29B97314FDCFA39411CA2CEA /* OsiriX */ = {
 			isa = PBXGroup;
 			children = (
+				4A1DBBA31E5B814700D45158 /* J2KR.h */,
+				4A1DBBA41E5B814700D45158 /* J2KR.mm */,
 				4A0EBA3F1DEEDAA000ECDC6C /* TODO.txt */,
 				4A16A7701DED1A64007E10B2 /* main.mm */,
 				4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */,
@@ -2486,8 +2489,6 @@
 		4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */ = {
 			isa = PBXGroup;
 			children = (
-				4A169F011DECA76D007E10B2 /* J2KR(noCodec).h */,
-				4AE1496D1DF87668001B722F /* J2KR(noCodec).mm */,
 				4A169EFD1DECA4C1007E10B2 /* djdijp2k.cc */,
 				4A169EFE1DECA4C1007E10B2 /* djeijg2k.cc */,
 				BFBF3BDF09B6828100545F5E /* djcodece.cc */,
@@ -3526,7 +3527,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A169F021DECA76D007E10B2 /* J2KR(noCodec).h in Headers */,
+				4A1DBBA51E5B814700D45158 /* J2KR.h in Headers */,
 				4A169D881DECA012007E10B2 /* osconfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3535,7 +3536,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A16A7721DED1EF1007E10B2 /* J2KR(noCodec).h in Headers */,
+				4A1DBBA71E5B842A00D45158 /* J2KR.h in Headers */,
 				4A16A6031DED1900007E10B2 /* osconfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4205,6 +4206,7 @@
 				4A169E3D1DECA012007E10B2 /* diargimg.cc in Sources */,
 				4A169E3E1DECA012007E10B2 /* dicmyimg.cc in Sources */,
 				4A169E3F1DECA012007E10B2 /* dicoimg.cc in Sources */,
+				4A1DBBA61E5B814700D45158 /* J2KR.mm in Sources */,
 				4A169E401DECA012007E10B2 /* dicoopx.cc in Sources */,
 				4A169E411DECA012007E10B2 /* dicopx.cc in Sources */,
 				4A169E421DECA012007E10B2 /* diyp2img.cc in Sources */,
@@ -4246,7 +4248,6 @@
 				4A169E651DECA012007E10B2 /* didispfn.cc in Sources */,
 				4A169E661DECA012007E10B2 /* didislut.cc in Sources */,
 				4A169E671DECA012007E10B2 /* dicielut.cc in Sources */,
-				4AE1496E1DF87668001B722F /* J2KR(noCodec).mm in Sources */,
 				4A169E681DECA012007E10B2 /* diutils.cc in Sources */,
 				4A169E691DECA012007E10B2 /* jutils.c in Sources */,
 				4A169E6A1DECA012007E10B2 /* jquant2.c in Sources */,
@@ -4383,6 +4384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1DBBA81E5B843400D45158 /* J2KR.mm in Sources */,
 				841E653C1E53488A00CDA264 /* main.mm in Sources */,
 				4A16A6051DED1900007E10B2 /* dcfilefo.cc in Sources */,
 				4A16A6061DED1900007E10B2 /* dcxfer.cc in Sources */,

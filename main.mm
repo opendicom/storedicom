@@ -40,7 +40,7 @@
  of incidental or consequential damages, so this exclusion and limitation may not apply to
  You.
  */
-#include "J2KR(noCodec).h"
+#include "J2KR.h"
 //#import "sys/xattr.h"
 
 int task(NSString *launchPath, NSArray *launchArgs, NSData *writeData, NSMutableData *readData)
@@ -112,40 +112,9 @@ int main(int argc, const char * argv[])
         NSMutableData *body = [NSMutableData data];
         NSMutableArray *packaged=[NSMutableArray array];
         
-        DJEncoderRegistration::registerCodecs(
-                                              ECC_lossyRGB,
-                                              EUC_never,
-                                              OFFalse,
-                                              OFFalse,
-                                              0,
-                                              0,
-                                              0,
-                                              OFTrue,
-                                              ESS_444,
-                                              OFFalse,
-                                              OFFalse,
-                                              0,
-                                              0,
-                                              0.0,
-                                              0.0,
-                                              0,
-                                              0,
-                                              0,
-                                              0,
-                                              OFTrue,
-                                              OFTrue,
-                                              OFFalse,
-                                              OFFalse,
-                                              OFTrue);
-        
+        [J2KR register];
 
 #pragma mark args
-        /*
-         [0] "/Users/Shared/stow/stow",
-         [1] path to institutionMapping.plist
-         [2] path to the root folder
-         [3] url string del PACS "http://192.168.0.7:8080/dcm4chee-arc/aets/%@/rs/studies"
-         */
         NSArray *args=[[NSProcessInfo processInfo] arguments];
         NSDictionary *institutionMapping=nil;
         institutionMapping=[NSDictionary dictionaryWithContentsOfFile:args[1]];
@@ -237,83 +206,12 @@ int main(int argc, const char * argv[])
                     [body appendData:ctadData];
                     
                     NSString *filePath=[STUDYpath stringByAppendingPathComponent:SOPIUIDarray[i]];
-                    
-                    DcmFileFormat fileformat;
-                    OFCondition cond = fileformat.loadFile( [filePath UTF8String]);
-                    DcmDataset *dataset = fileformat.getDataset();
-                    DcmXfer original_xfer(dataset->getOriginalXfer());
-                    BOOL mayJ2KR=false;
-                    if (!original_xfer.isEncapsulated())
-                    {
-                        DJ_RPLossy JP2KParamsLossLess(0 );//DCMLosslessQuality
-                        DcmRepresentationParameter *params = &JP2KParamsLossLess;
-                        DcmXfer oxferSyn( EXS_JPEG2000LosslessOnly);
-                        dataset->chooseRepresentation(EXS_JPEG2000LosslessOnly, params);
-                        if (dataset->canWriteXfer(EXS_JPEG2000LosslessOnly)) mayJ2KR=true;
-                        else NSLog(@"cannot J2KR: %@)",filePath);
-                    }
-                    fileformat.loadAllDataIntoMemory();
-                    
-        #pragma mark metadata adjustments for all files
-                    
-                    // 00081060=-^-^- NameofPhysiciansReadingStudy
-                    delete dataset->remove( DcmTagKey( 0x0008, 0x1060));
-                    dataset->putAndInsertString( DcmTagKey( 0x0008, 0x1060),[@"-^-^-" cStringUsingEncoding:NSASCIIStringEncoding] );
-                    
-                    // 00200010=29991231235959
-                    delete dataset->remove( DcmTagKey( 0x0020, 0x0010));
-                    dataset->putAndInsertString( DcmTagKey( 0x0020, 0x0010),[@"29991231235959" cStringUsingEncoding:NSASCIIStringEncoding] );
-                    
-                    // 00080090=-^-^-^-
-                    delete dataset->remove( DcmTagKey( 0x0008, 0x0090));
-                    dataset->putAndInsertString( DcmTagKey( 0x0008, 0x0090),[@"-^-^-^-" cStringUsingEncoding:NSASCIIStringEncoding] );
-                    
-                    //remove SQ reqService
-                    delete dataset->remove( DcmTagKey( 0x0032, 0x1034));
-                    
-                    // "GEIIS" The problematic private group, containing a *always* JPEG compressed PixelData
-                    delete dataset->remove( DcmTagKey( 0x0009, 0x1110));
-                    
-#pragma mark institutionName adjustments
-                    delete dataset->remove( DcmTagKey( 0x0008, 0x0080));
-                    dataset->putAndInsertString( DcmTagKey( 0x0008, 0x0080),[institutionName cStringUsingEncoding:NSASCIIStringEncoding] );
-                    
-                    
-        #pragma mark compress and add to stream (revisar bien a que corresponde toda esta sintaxis!!!)
                     NSString *COERCEDfile=[COERCEDpath stringByAppendingPathComponent:SOPIUIDarray[i]];
-                    if (
-                        mayJ2KR
-                        && (
-                            (fileformat.saveFile(
-                                                 [COERCEDfile UTF8String],
-                                                 EXS_JPEG2000LosslessOnly
-                                                 )
-                             ).good()
-                            )
-                        )
+                    if ([J2KR coerceFileAtPath:filePath toPath:COERCEDfile withInstitutionName:institutionName])
                     {
                         [body appendData:[NSData dataWithContentsOfFile:COERCEDfile]];
                         [packaged addObject:COERCEDfile];
                         [fileManager moveItemAtPath:filePath toPath:[ORIGINALSpath stringByAppendingPathComponent:SOPIUIDarray[i]] error:&error];
-                    }
-                    else if (
-                             (fileformat.saveFile(
-                                                  [COERCEDfile UTF8String],
-                                                  original_xfer.getXfer()
-                                                  )
-                              ).good()
-                             )
-                    {
-                        [body appendData:[NSData dataWithContentsOfFile:COERCEDfile]];
-                        [packaged addObject:COERCEDfile];
-                        [fileManager moveItemAtPath:filePath toPath:[ORIGINALSpath stringByAppendingPathComponent:SOPIUIDarray[i]] error:&error];
-                    }
-                    else
-                    {
-                        //no fue posible la coerci—n ni en J2KR ni en ELE
-                        //no se manda al PACS
-                        //se traslada el original a DISCARDED
-                        [fileManager moveItemAtPath:filePath toPath:[DISCARDEDpath stringByAppendingPathComponent:SOPIUIDarray[i]] error:&error];
                     }
                     
                     
