@@ -35,7 +35,11 @@
 +(BOOL)coerceFileAtPath:(NSString*)srcPath toPath:(NSString*)dstPath withInstitutionName:(NSString*)InstitutionName
 {
     DcmFileFormat fileformat;
-    if (fileformat.loadFile( [srcPath UTF8String]).bad()) return false;
+    if (fileformat.loadFile( [srcPath UTF8String]).bad())
+    {
+        NSLog(@"can not load: %@",srcPath);
+        return false;
+    }
     
     DcmDataset *dataset = fileformat.getDataset();
     DcmXfer original_xfer(dataset->getOriginalXfer());
@@ -78,8 +82,14 @@
     }
     
 #pragma mark compress and add to stream (revisar bien a que corresponde toda esta sintaxis!!!)
-    if (mayJ2KR && ((fileformat.saveFile([dstPath UTF8String],EXS_JPEG2000LosslessOnly)).good())) return true;
+    if (mayJ2KR)
+    {
+        if (fileformat.saveFile([dstPath UTF8String],EXS_JPEG2000LosslessOnly).good()) return true;
+        NSLog(@"can not save coerced J2KR to: %@",dstPath);
+        return false;
+    }
     if ((fileformat.saveFile([dstPath UTF8String],EXS_LittleEndianExplicit)).good()) return true;
+    NSLog(@"can not save coerced to: %@",dstPath);
     return false;
 }
 

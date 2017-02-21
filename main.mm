@@ -41,6 +41,7 @@
  You.
  */
 #include "J2KR.h"
+#import "NSString+opendicom.h"
 //#import "sys/xattr.h"
 
 int task(NSString *launchPath, NSArray *launchArgs, NSData *writeData, NSMutableData *readData)
@@ -112,6 +113,8 @@ int main(int argc, const char * argv[])
         NSMutableData *body = [NSMutableData data];
         NSMutableArray *packaged=[NSMutableArray array];
         
+        char lastByte;
+        
         [J2KR register];
 
 #pragma mark args
@@ -120,8 +123,6 @@ int main(int argc, const char * argv[])
         institutionMapping=[NSDictionary dictionaryWithContentsOfFile:args[1]];
         NSLog(@"%@",[institutionMapping description]);
         
-#pragma mark loop CLASSIFIED
-        
         NSFileManager *fileManager=[NSFileManager defaultManager];
         NSString *CLASSIFIED=[args[2] stringByAppendingPathComponent:@"CLASSIFIED"];
         NSString *DISCARDED=[args[2] stringByAppendingPathComponent:@"DISCARDED"];
@@ -129,6 +130,8 @@ int main(int argc, const char * argv[])
         NSString *COERCED=[args[2] stringByAppendingPathComponent:@"COERCED"];
         NSString *REJECTED=[args[2] stringByAppendingPathComponent:@"REJECTED"];
         NSString *STOWED=[args[2] stringByAppendingPathComponent:@"STOWED"];
+        
+#pragma mark loop CLASSIFIED
 
         NSArray *CLASSIFIEDarray=[fileManager contentsOfDirectoryAtPath:CLASSIFIED error:&error];
         for (NSString *CLASSIFIEDname in CLASSIFIEDarray)
@@ -138,12 +141,11 @@ int main(int argc, const char * argv[])
             NSArray *properties=[CLASSIFIEDname componentsSeparatedByString:@"@"];
             
             
-            NSString *institutionName=institutionMapping[properties[1]];
-            if (!institutionName) institutionName=institutionMapping[properties[2]];
-            NSLog(@"%@ -> %@",CLASSIFIEDname,institutionName);
+            NSString *institutionName=institutionMapping[properties[1]];//en base a aet
+            if (!institutionName) institutionName=institutionMapping[properties[2]];//en base a IP
             if (!institutionName)
             {
-                NSLog(@"unknown aet and ip, moving folder to DISCARDED");
+                NSLog(@"unknown: %@",CLASSIFIEDname);
                 [fileManager moveItemAtPath:CLASSIFIEDpath
                                      toPath:[NSString stringWithFormat:@"%@/%@@%f",
                                              DISCARDED,CLASSIFIEDname,
@@ -155,6 +157,8 @@ int main(int argc, const char * argv[])
                 continue;
             }
             NSString *pacsURIString=[NSString stringWithFormat:args[3],institutionName];
+            NSLog(@"%@ -> %@",CLASSIFIEDname,institutionName);
+
             
 #pragma mark loop STUDIES
             for (NSString *StudyInstanceUID in [fileManager contentsOfDirectoryAtPath:CLASSIFIEDpath error:nil])
@@ -165,21 +169,31 @@ int main(int argc, const char * argv[])
 
                 NSMutableData *sqlResponseData=[NSMutableData data];
                 if ([args count]>4) task(@"/bin/bash",@[@"-s"],[[NSString stringWithFormat:args[4],StudyInstanceUID] dataUsingEncoding:NSUTF8StringEncoding],sqlResponseData);
-                NSString *sqlResponseString=[[NSString alloc]initWithData:sqlResponseData encoding:NSUTF8StringEncoding];
-                if (([sqlResponseData length]>0) && ![sqlResponseString hasPrefix:institutionName])
+                if ([sqlResponseData length])
                 {
-                    //StudyIUID already registered in other institution
-                    NSLog(@"%@",sqlResponseString);
+                    [sqlResponseData getBytes:&lastByte range:NSMakeRange([sqlResponseData length]-1,1)];
+                    NSString *sqlResponseString=nil;//remove eventual last space
+                    if (lastByte==0x20) sqlResponseString=[[NSString alloc]initWithData:sqlResponseData encoding:NSUTF8StringEncoding];
+                    else sqlResponseString=[[NSString alloc]initWithData:[sqlResponseData subdataWithRange:NSMakeRange(0,[sqlResponseData length]-1)] encoding:NSUTF8StringEncoding];
+                    if (![sqlResponseString isEqualToString:institutionName])
+                    {
+                        //StudyIUID already registered in other institution
+                        NSLog(@"%@ (discarded. Belongs to %@)",StudyInstanceUID,sqlResponseString);
                     
-                    NSString *DISCARDEDpath=[[DISCARDED stringByAppendingPathComponent:CLASSIFIEDname]stringByAppendingPathComponent:StudyInstanceUID];
-                    [fileManager createDirectoryAtPath:DISCARDEDpath withIntermediateDirectories:YES attributes:nil error:&error];
-                    [fileManager moveItemAtPath:STUDYpath toPath:DISCARDEDpath  error:&error];
-                    continue;
+                        NSString *DISCARDEDpath=[[DISCARDED stringByAppendingPathComponent:CLASSIFIEDname]stringByAppendingPathComponent:StudyInstanceUID];
+                        [fileManager createDirectoryAtPath:DISCARDEDpath withIntermediateDirectories:YES attributes:nil error:&error];
+                        [fileManager moveItemAtPath:STUDYpath toPath:DISCARDEDpath  error:&error];
+                        continue;
+                    }
                 }
-                return 0;
-                
                 NSURL *pacsURI=[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",pacsURIString,StudyInstanceUID]];
                 NSString *qidoRequest=[NSString stringWithFormat:@"%@?StudyInstanceUID=%@",pacsURIString,StudyInstanceUID];
+                NSURL *qidoRequestURL=[NSURL URLWithString:qidoRequest];
+                NSLog(@"%@ %@",
+                      StudyInstanceUID,
+                      [NSString modalitieSeriesAndInstancesForQidoURL:qidoRequestURL]
+                      );
+
                 
                 NSString *COERCEDpath=[[COERCED stringByAppendingPathComponent:CLASSIFIEDname] stringByAppendingPathComponent:StudyInstanceUID];
                 [fileManager createDirectoryAtPath:COERCEDpath withIntermediateDirectories:YES attributes:nil error:&error];
@@ -213,6 +227,13 @@ int main(int argc, const char * argv[])
                         [packaged addObject:COERCEDfile];
                         [fileManager moveItemAtPath:filePath toPath:[ORIGINALSpath stringByAppendingPathComponent:SOPIUIDarray[i]] error:&error];
                     }
+                    else
+                    {
+                        //no fue posible la coerci—n ni en J2KR ni en ELE
+                        //no se manda al PACS
+                        //se traslada el original a DISCARDED
+                        [fileManager moveItemAtPath:filePath toPath:[DISCARDEDpath stringByAppendingPathComponent:SOPIUIDarray[i]] error:&error];
+                    }
                     
                     
         #pragma mark send stow
@@ -232,18 +253,17 @@ int main(int argc, const char * argv[])
                         [request setHTTPBody:body];
                         
                         //send stow
-                        NSHTTPURLResponse *response;
-                                                NSData *responseData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+                        NSHTTPURLResponse *stowResponse;
+                        NSData *responseData=[NSURLConnection sendSynchronousRequest:request returningResponse:&stowResponse error:&error];
                      
                         if (  !responseData
                             ||!(
-                                ([response statusCode]==200)
-                                ||([response statusCode]==500)
+                                ([stowResponse statusCode]==200)
+                                ||([stowResponse statusCode]==500)
                                 )
                             )
                         {
-                            NSLog(@"%@",[response description]);
-                            //NSLog(@"%@",[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]);
+                            NSLog(@"%@\r\nstow response statusCode:%d\r\n%@",pacsURI,[stowResponse statusCode],[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]);
 
                             //Failure
                              //=======
@@ -274,46 +294,35 @@ int main(int argc, const char * argv[])
                         }
                         else
                         {
-                            //NSLog(@"sent: %d bytes",[body length]);
                             for (NSString *fp in packaged)
                             {
                                 [fileManager moveItemAtPath:fp toPath:[STOWEDpath stringByAppendingPathComponent:[fp lastPathComponent]] error:&error];
                             }
-                            NSLog(@"%@",qidoRequest);
-                            
-                     
-                            NSData *qidoResponse=[NSData dataWithContentsOfURL:[NSURL URLWithString:qidoRequest]];
-                            if (!qidoResponse) NSLog(@"status:%d  -  could not verify pacs reception",[response statusCode] );
-                            else
-                            {
-                                NSDictionary *d=[NSJSONSerialization JSONObjectWithData:qidoResponse options:0 error:&error][0];
-                                
-                                //NSLog(@"%@",[d description]);
-                                NSLog(@"%@ %@ (%@/%@) [+%d]",
-                                      ((d[@"00080061"])[@"Value"])[0],
+                            NSLog(@"%@ %@ [+%d]",
                                       StudyInstanceUID,
-                                      ((d[@"00201206"])[@"Value"])[0],
-                                      ((d[@"00201208"])[@"Value"])[0],
+                                      [NSString modalitieSeriesAndInstancesForQidoURL:qidoRequestURL],
                                       [body length]
                                       );
-                            }
                         }
                         [body setData:[NSData data]];
                         [packaged removeAllObjects];
                     }
                     
                 }
-                if([[fileManager contentsOfDirectoryAtPath:STUDYpath error:&error]count]==0)[fileManager removeItemAtPath:STUDYpath error:&error];
+                if(![[fileManager contentsOfDirectoryAtPath:STUDYpath error:&error]count])
+                [fileManager removeItemAtPath:STUDYpath error:&error];
                 
-                if([[fileManager contentsOfDirectoryAtPath:COERCEDpath error:&error]count]==0)[fileManager removeItemAtPath:COERCEDpath error:&error];
+                if(![[fileManager contentsOfDirectoryAtPath:COERCEDpath error:&error]count])
+                [fileManager removeItemAtPath:COERCEDpath error:&error];
 
-                if([[fileManager contentsOfDirectoryAtPath:DISCARDEDpath error:&error]count]==0)[fileManager removeItemAtPath:DISCARDEDpath error:&error];
+                if(![[fileManager contentsOfDirectoryAtPath:DISCARDEDpath error:&error]count])[fileManager removeItemAtPath:DISCARDEDpath error:&error];
 
-                if([[fileManager contentsOfDirectoryAtPath:ORIGINALSpath error:&error]count]==0)[fileManager removeItemAtPath:ORIGINALSpath error:&error];
+                if(![[fileManager contentsOfDirectoryAtPath:ORIGINALSpath error:&error]count])[fileManager removeItemAtPath:ORIGINALSpath error:&error];
 
-                if([[fileManager contentsOfDirectoryAtPath:REJECTEDpath error:&error]count]==0)[fileManager removeItemAtPath:REJECTEDpath error:&error];
+                if(![[fileManager contentsOfDirectoryAtPath:REJECTEDpath error:&error]count])[fileManager removeItemAtPath:REJECTEDpath error:&error];
 
-                if([[fileManager contentsOfDirectoryAtPath:STOWEDpath error:&error]count]==0)[fileManager removeItemAtPath:STOWEDpath error:&error];
+                if(![[fileManager contentsOfDirectoryAtPath:STOWEDpath error:&error]count])[fileManager removeItemAtPath:STOWEDpath error:&error];
+                
             }
         }
     }

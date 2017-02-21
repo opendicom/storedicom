@@ -9,4 +9,6 @@
 -(NSArray*)tagPathComponents;
 //-(NSUInteger)dcmEVRFOfJSONElement;
 -(NSDictionary*)dictionaryForJSONElement;
+
++(NSString*)modalitieSeriesAndInstancesForQidoURL:(NSURL*)url;
 @end

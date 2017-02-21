@@ -234,4 +234,19 @@ static NSArray *vrs=@[
     return nil;
 }
 
++(NSString*)modalitieSeriesAndInstancesForQidoURL:(NSURL*)url
+{
+    NSData *qidoData=[NSData dataWithContentsOfURL:url];
+    if (qidoData)
+    {
+        NSDictionary *d=[NSJSONSerialization JSONObjectWithData:qidoData options:0 error:nil][0];
+        return [NSString stringWithFormat:@"%@ (%@/%@)",
+              ((d[@"00080061"])[@"Value"])[0],
+              ((d[@"00201206"])[@"Value"])[0],
+              ((d[@"00201208"])[@"Value"])[0]
+              ];
+    }
+    return @"(?,?,?)";
+}
+
 @end
