@@ -20,9 +20,9 @@
 #include "dcdict.h"
 #include "dcdeftag.h"
 
-@interface J2KR : NSObject {}
+@interface Coerce : NSObject {}
 
-+(void)register;
-+(BOOL)coerceFileAtPath:(NSString*)srcPath toPath:(NSString*)dstPath withInstitutionName:(NSString*)InstitutionName;
++(void)registerCodecs;
++(NSString*)coerceFileAtPath:(NSString*)srcPath toPath:(NSString*)dstPath withInstitutionName:(NSString*)InstitutionName;
 
 @end

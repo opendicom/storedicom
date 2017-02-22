@@ -40,9 +40,43 @@
  of incidental or consequential damages, so this exclusion and limitation may not apply to
  You.
  */
-#include "J2KR.h"
+#include "Coerce.h"
 #import "NSString+opendicom.h"
-//#import "sys/xattr.h"
+
+//http://nshipster.com/extended-file-attributes/
+//http://apple.stackexchange.com/questions/110662/possible-to-tag-a-folder-via-terminal
+#include "sys/xattr.h"
+#include "sys/types.h"
+const char *red="(\"error\n6\")";
+static char tagBuffer[128];
+BOOL reding(NSString *path, NSString *message)
+{
+    //http://superuser.com/questions/82106/where-does-spotlight-store-its-metadata-index/256311#256311
+    //osascript -e 'on run {f, c}' -e 'tell app "Finder" to set comment of (POSIX file f as alias) to c' -e end /Users/jacquesfauquex/a hola
+    [NSTask launchedTaskWithLaunchPath:@"/usr/bin/osascript"
+                             arguments:@[@"-e",
+                                         @"on run {f, c}",
+                                         @"-e",
+                                         @"tell app \"Finder\" to set comment of (POSIX file f as alias) to c",
+                                         @"-e",
+                                         @"end",
+                                         path,
+                                         message
+                                         ]
+     ];
+    
+    return (-1!=setxattr([path fileSystemRepresentation], "com.apple.metadata:_kMDItemUserTags", red , strlen(red), 0, 0));
+}
+const char *green="(\"done\n2\")";
+BOOL isGreen(NSString *path)
+{
+    ssize_t valueSize=getxattr([path fileSystemRepresentation], "com.apple.metadata:_kMDItemUserTags", &tagBuffer, 16, 0, 0);
+    for (int i=0;i<valueSize;i++)
+    {
+        if (tagBuffer[i]==0x32) return true;
+    }
+    return false;
+}
 
 int task(NSString *launchPath, NSArray *launchArgs, NSData *writeData, NSMutableData *readData)
 {
@@ -115,7 +149,7 @@ int main(int argc, const char * argv[])
         
         char lastByte;
         
-        [J2KR register];
+        [Coerce registerCodecs];
 
 #pragma mark args
         NSArray *args=[[NSProcessInfo processInfo] arguments];
@@ -221,7 +255,8 @@ int main(int argc, const char * argv[])
                     
                     NSString *filePath=[STUDYpath stringByAppendingPathComponent:SOPIUIDarray[i]];
                     NSString *COERCEDfile=[COERCEDpath stringByAppendingPathComponent:SOPIUIDarray[i]];
-                    if ([J2KR coerceFileAtPath:filePath toPath:COERCEDfile withInstitutionName:institutionName])
+                    NSString *coercedErrorMessage=[Coerce coerceFileAtPath:filePath toPath:COERCEDfile withInstitutionName:institutionName];
+                    if (!coercedErrorMessage)
                     {
                         [body appendData:[NSData dataWithContentsOfFile:COERCEDfile]];
                         [packaged addObject:COERCEDfile];
@@ -229,9 +264,10 @@ int main(int argc, const char * argv[])
                     }
                     else
                     {
-                        //no fue posible la coerci—n ni en J2KR ni en ELE
+                        //coerci—n imposible
                         //no se manda al PACS
                         //se traslada el original a DISCARDED
+                        NSLog(@"%@",coercedErrorMessage);
                         [fileManager moveItemAtPath:filePath toPath:[DISCARDEDpath stringByAppendingPathComponent:SOPIUIDarray[i]] error:&error];
                     }
                     

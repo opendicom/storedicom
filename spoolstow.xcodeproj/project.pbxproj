@@ -1091,10 +1091,10 @@
 		4A16A76A1DED1900007E10B2 /* libkdu_v73R.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A169D7A1DE8B2E4007E10B2 /* libkdu_v73R.a */; };
 		4A16A76B1DED1900007E10B2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1685891DE6584D007E10B2 /* libz.1.2.8.tbd */; };
 		4A16A76C1DED1900007E10B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
-		4A1DBBA51E5B814700D45158 /* J2KR.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1DBBA31E5B814700D45158 /* J2KR.h */; };
-		4A1DBBA61E5B814700D45158 /* J2KR.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A1DBBA41E5B814700D45158 /* J2KR.mm */; };
-		4A1DBBA71E5B842A00D45158 /* J2KR.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1DBBA31E5B814700D45158 /* J2KR.h */; };
-		4A1DBBA81E5B843400D45158 /* J2KR.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A1DBBA41E5B814700D45158 /* J2KR.mm */; };
+		4A1DBBA51E5B814700D45158 /* Coerce.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1DBBA31E5B814700D45158 /* Coerce.h */; };
+		4A1DBBA61E5B814700D45158 /* Coerce.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A1DBBA41E5B814700D45158 /* Coerce.mm */; };
+		4A1DBBA71E5B842A00D45158 /* Coerce.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1DBBA31E5B814700D45158 /* Coerce.h */; };
+		4A1DBBA81E5B843400D45158 /* Coerce.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A1DBBA41E5B814700D45158 /* Coerce.mm */; };
 		4AA0A5F31E48E3A2005B3E9D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA0A5F21E48E3A2005B3E9D /* Security.framework */; };
 		4AEAD24A1CC6E475000FEA7F /* dcfilefo.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3AD809B6827D00545F5E /* dcfilefo.cc */; };
 		4AEAD24B1CC6E475000FEA7F /* dcxfer.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3B5309B6827F00545F5E /* dcxfer.cc */; };
@@ -1743,8 +1743,8 @@
 		4A16A2071DECABC5007E10B2 /* ofuoset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofuoset.h; path = "Binaries/dcmtk-source/ofstd/ofuoset.h"; sourceTree = "<group>"; };
 		4A16A76F1DED1900007E10B2 /* spoolstow */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = spoolstow; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A16A7701DED1A64007E10B2 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		4A1DBBA31E5B814700D45158 /* J2KR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = J2KR.h; sourceTree = "<group>"; };
-		4A1DBBA41E5B814700D45158 /* J2KR.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = J2KR.mm; sourceTree = "<group>"; };
+		4A1DBBA31E5B814700D45158 /* Coerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coerce.h; sourceTree = "<group>"; };
+		4A1DBBA41E5B814700D45158 /* Coerce.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Coerce.mm; sourceTree = "<group>"; };
 		4A9059EC1CEF908600A9CA2F /* ODvr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODvr.h; sourceTree = "<group>"; };
 		4AA0A5F21E48E3A2005B3E9D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4AC642D81CE57FF500A25E46 /* ODMetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetaInfo.h; sourceTree = "<group>"; };
@@ -2441,8 +2441,8 @@
 		29B97314FDCFA39411CA2CEA /* OsiriX */ = {
 			isa = PBXGroup;
 			children = (
-				4A1DBBA31E5B814700D45158 /* J2KR.h */,
-				4A1DBBA41E5B814700D45158 /* J2KR.mm */,
+				4A1DBBA31E5B814700D45158 /* Coerce.h */,
+				4A1DBBA41E5B814700D45158 /* Coerce.mm */,
 				4A0EBA3F1DEEDAA000ECDC6C /* TODO.txt */,
 				4A16A7701DED1A64007E10B2 /* main.mm */,
 				4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */,
@@ -3527,7 +3527,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1DBBA51E5B814700D45158 /* J2KR.h in Headers */,
+				4A1DBBA51E5B814700D45158 /* Coerce.h in Headers */,
 				4A169D881DECA012007E10B2 /* osconfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3536,7 +3536,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1DBBA71E5B842A00D45158 /* J2KR.h in Headers */,
+				4A1DBBA71E5B842A00D45158 /* Coerce.h in Headers */,
 				4A16A6031DED1900007E10B2 /* osconfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4206,7 +4206,7 @@
 				4A169E3D1DECA012007E10B2 /* diargimg.cc in Sources */,
 				4A169E3E1DECA012007E10B2 /* dicmyimg.cc in Sources */,
 				4A169E3F1DECA012007E10B2 /* dicoimg.cc in Sources */,
-				4A1DBBA61E5B814700D45158 /* J2KR.mm in Sources */,
+				4A1DBBA61E5B814700D45158 /* Coerce.mm in Sources */,
 				4A169E401DECA012007E10B2 /* dicoopx.cc in Sources */,
 				4A169E411DECA012007E10B2 /* dicopx.cc in Sources */,
 				4A169E421DECA012007E10B2 /* diyp2img.cc in Sources */,
@@ -4384,7 +4384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1DBBA81E5B843400D45158 /* J2KR.mm in Sources */,
+				4A1DBBA81E5B843400D45158 /* Coerce.mm in Sources */,
 				841E653C1E53488A00CDA264 /* main.mm in Sources */,
 				4A16A6051DED1900007E10B2 /* dcfilefo.cc in Sources */,
 				4A16A6061DED1900007E10B2 /* dcxfer.cc in Sources */,
@@ -5198,8 +5198,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
-					"$(PROJECT_DIR)/Binaries/KDU\\ SDK",
-					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",

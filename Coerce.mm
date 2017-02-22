@@ -1,8 +1,29 @@
-#include "J2KR.h"
+#include "Coerce.h"
 
-@implementation J2KR
+#include "sys/xattr.h"
+#include "sys/types.h"
 
-+(void)register
+const char* tsColor[] = {
+    "(\"none\n0\")",//White
+    "(\"tsel\n1\")",//Gray
+    "(\"j2kr\n2\")",//Green
+    "(\"ecdc\n3\")",//Purple
+    "(\"xreq\n4\")",//Blue
+    "(\"xdsc\n5\")",//Yellow
+    "(\"tsno\n6\")",//Red
+    "(\"hpdf\n7\")" //Orange
+};
+enum TS { none,tsel,j2kr,ecdc,xreq,xdsc,tsno,hpdf };
+
+
+BOOL setTS(NSString *path,int ts)
+{
+    return (-1!=setxattr([path fileSystemRepresentation], "com.apple.metadata:_kMDItemUserTags", tsColor[ts] , 10, 0, 0));
+}
+
+@implementation Coerce
+
++(void)registerCodecs
 {
     DJEncoderRegistration::registerCodecs(
                                           ECC_lossyRGB,
@@ -32,17 +53,40 @@
 
 }
 
-+(BOOL)coerceFileAtPath:(NSString*)srcPath toPath:(NSString*)dstPath withInstitutionName:(NSString*)InstitutionName
++(NSString*)coerceFileAtPath:(NSString*)srcPath toPath:(NSString*)dstPath withInstitutionName:(NSString*)InstitutionName
 {
+    //return nil o mensaje de error
     DcmFileFormat fileformat;
-    if (fileformat.loadFile( [srcPath UTF8String]).bad())
-    {
-        NSLog(@"can not load: %@",srcPath);
-        return false;
+    if (fileformat.loadFile( [srcPath UTF8String]).bad()) return [@"can not load: " stringByAppendingString:srcPath];
+
+    DcmDataset *dataset = fileformat.getDataset();
+
+    
+    const char* sopclass;
+    NSString *sopclassstring=nil;
+    if (dataset->findAndGetString(DCM_SOPClassUID, sopclass ).good()) sopclassstring=[NSString stringWithCString:sopclass encoding:NSASCIIStringEncoding];
+
+    DcmXfer original_xfer(dataset->getOriginalXfer());
+    switch (original_xfer.getXfer()) {
+        case EXS_LittleEndianImplicit:
+        case EXS_BigEndianExplicit:
+            setTS(srcPath,tsno);
+            return [@"not explicit little endian: " stringByAppendingString:srcPath];
+        case EXS_LittleEndianExplicit:
+            //discriminate por SOPClass  (xreq xdsc) hpdf tsel
+            if ([sopclassstring isEqualToString:@"1.2.840.10008.5.1.4.1.1.104.2"]) setTS(srcPath,xdsc);
+            else if ([sopclassstring isEqualToString:@"1.2.840.10008.5.1.4.1.1.104.1"]) setTS(srcPath,hpdf);
+            else setTS(srcPath,tsel);
+            break;
+        case EXS_JPEG2000LosslessOnly:
+            setTS(srcPath,j2kr);
+            break;
+        default:
+            setTS(srcPath,ecdc);
+            return [@"encapsulated not j2kr: " stringByAppendingString:srcPath];
     }
     
-    DcmDataset *dataset = fileformat.getDataset();
-    DcmXfer original_xfer(dataset->getOriginalXfer());
+    
     BOOL mayJ2KR=false;
     if (!original_xfer.isEncapsulated())
     {
@@ -84,13 +128,11 @@
 #pragma mark compress and add to stream (revisar bien a que corresponde toda esta sintaxis!!!)
     if (mayJ2KR)
     {
-        if (fileformat.saveFile([dstPath UTF8String],EXS_JPEG2000LosslessOnly).good()) return true;
-        NSLog(@"can not save coerced J2KR to: %@",dstPath);
-        return false;
+        if (fileformat.saveFile([dstPath UTF8String],EXS_JPEG2000LosslessOnly).good()) return nil;
+        return [@"can not save coerced J2KR to: " stringByAppendingString:dstPath];
     }
-    if ((fileformat.saveFile([dstPath UTF8String],EXS_LittleEndianExplicit)).good()) return true;
-    NSLog(@"can not save coerced to: %@",dstPath);
-    return false;
+    if ((fileformat.saveFile([dstPath UTF8String],EXS_LittleEndianExplicit)).good()) return nil;
+    return [@"can not save coerced to: " stringByAppendingString:dstPath];
 }
 
 @end
