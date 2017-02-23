@@ -1453,6 +1453,11 @@
 		4AEAD3C61CC6E475000FEA7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		4AEAD5721CC6E5A7000FEA7F /* KDU.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAD5711CC6E5A7000FEA7F /* KDU.mm */; };
 		841E653C1E53488A00CDA264 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A16A7701DED1A64007E10B2 /* main.mm */; };
+		8426A79F1E5F2B16009E2EAD /* NSDictionary+opendicom.h in Headers */ = {isa = PBXBuildFile; fileRef = 8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */; };
+		8426A7A01E5F2B17009E2EAD /* NSDictionary+opendicom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8426A79E1E5F2B16009E2EAD /* NSDictionary+opendicom.mm */; };
+		8426A7A11E5F2EC9009E2EAD /* NSDictionary+opendicom.h in Headers */ = {isa = PBXBuildFile; fileRef = 8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */; };
+		8426A7A21E5F2ED2009E2EAD /* NSString+opendicom.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A04FF241CD924B900A8BB5D /* NSString+opendicom.h */; };
+		8426A7A31E5F2EF8009E2EAD /* NSDictionary+opendicom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8426A79E1E5F2B16009E2EAD /* NSDictionary+opendicom.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1761,6 +1766,8 @@
 		4AF940621CE5720100551476 /* ODDataset.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODDataset.mm; sourceTree = "<group>"; };
 		4AF940651CE5720100551476 /* ODFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFile.h; sourceTree = "<group>"; };
 		4AF940661CE5720100551476 /* ODFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODFile.mm; sourceTree = "<group>"; };
+		8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+opendicom.h"; sourceTree = "<group>"; };
+		8426A79E1E5F2B16009E2EAD /* NSDictionary+opendicom.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSDictionary+opendicom.mm"; sourceTree = "<group>"; };
 		AB5E1A300595697700C48BEB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
 		BFBF3AB809B6827D00545F5E /* cfunix.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = cfunix.h; sourceTree = "<group>"; };
 		BFBF3AB909B6827D00545F5E /* osconfig.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = osconfig.h; sourceTree = "<group>"; };
@@ -2794,6 +2801,8 @@
 		AB724F1C0ADE6CFC00A212A0 /* categories */ = {
 			isa = PBXGroup;
 			children = (
+				8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */,
+				8426A79E1E5F2B16009E2EAD /* NSDictionary+opendicom.mm */,
 				4A04FF241CD924B900A8BB5D /* NSString+opendicom.h */,
 				4A04FF251CD924B900A8BB5D /* NSString+opendicom.mm */,
 			);
@@ -3528,6 +3537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A1DBBA51E5B814700D45158 /* Coerce.h in Headers */,
+				8426A79F1E5F2B16009E2EAD /* NSDictionary+opendicom.h in Headers */,
 				4A169D881DECA012007E10B2 /* osconfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3537,7 +3547,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A1DBBA71E5B842A00D45158 /* Coerce.h in Headers */,
+				8426A7A21E5F2ED2009E2EAD /* NSString+opendicom.h in Headers */,
 				4A16A6031DED1900007E10B2 /* osconfig.h in Headers */,
+				8426A7A11E5F2EC9009E2EAD /* NSDictionary+opendicom.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4175,6 +4187,7 @@
 				4A169E1E1DECA012007E10B2 /* jquant1.c in Sources */,
 				4A169E1F1DECA012007E10B2 /* jquant2.c in Sources */,
 				4A169E201DECA012007E10B2 /* jutils.c in Sources */,
+				8426A7A01E5F2B17009E2EAD /* NSDictionary+opendicom.mm in Sources */,
 				4A169E211DECA012007E10B2 /* djdecode.cc in Sources */,
 				4A169E221DECA012007E10B2 /* djencode.cc in Sources */,
 				4A169E231DECA012007E10B2 /* ddpiimpl.cc in Sources */,
@@ -4385,6 +4398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A1DBBA81E5B843400D45158 /* Coerce.mm in Sources */,
+				8426A7A31E5F2EF8009E2EAD /* NSDictionary+opendicom.mm in Sources */,
 				841E653C1E53488A00CDA264 /* main.mm in Sources */,
 				4A16A6051DED1900007E10B2 /* dcfilefo.cc in Sources */,
 				4A16A6061DED1900007E10B2 /* dcxfer.cc in Sources */,

@@ -42,6 +42,7 @@
  */
 #include "Coerce.h"
 #import "NSString+opendicom.h"
+#import "NSDictionary+opendicom.h"
 
 #include "sys/xattr.h"
 #include "sys/types.h"
@@ -222,9 +223,12 @@ int main(int argc, const char * argv[])
                 NSURL *pacsURI=[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",pacsURIString,StudyInstanceUID]];
                 NSString *qidoRequest=[NSString stringWithFormat:@"%@?StudyInstanceUID=%@",pacsURIString,StudyInstanceUID];
                 NSURL *qidoRequestURL=[NSURL URLWithString:qidoRequest];
-                NSLog(@"%@ %@ in PACS before STOW",
+                NSDictionary *q=[NSDictionary studyAttributesForQidoURL:qidoRequestURL];
+                NSLog(@"%@ %@ (%@/%@) in PACS before STOW",
                       StudyInstanceUID,
-                      [NSString modalitieSeriesAndInstancesForQidoURL:qidoRequestURL]
+                      q[@"00080061"],
+                      q[@"00201206"],
+                      q[@"00201208"]
                       );
 
                 
@@ -333,11 +337,14 @@ int main(int argc, const char * argv[])
                             {
                                 [fileManager moveItemAtPath:fp toPath:[STOWEDpath stringByAppendingPathComponent:[fp lastPathComponent]] error:&error];
                             }
-                            NSLog(@"%@ %@ [+%d]",
-                                      StudyInstanceUID,
-                                      [NSString modalitieSeriesAndInstancesForQidoURL:qidoRequestURL],
-                                      [body length]
-                                      );
+                            NSDictionary *q=[NSDictionary studyAttributesForQidoURL:qidoRequestURL];
+                            NSLog(@"%@ %@ (%@/%@) [+%d]",
+                                  StudyInstanceUID,
+                                  q[@"00080061"],
+                                  q[@"00201206"],
+                                  q[@"00201208"],
+                                  [body length]
+                                  );
                         }
                         [body setData:[NSData data]];
                         [packaged removeAllObjects];
