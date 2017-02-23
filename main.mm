@@ -43,13 +43,10 @@
 #include "Coerce.h"
 #import "NSString+opendicom.h"
 
-//http://nshipster.com/extended-file-attributes/
-//http://apple.stackexchange.com/questions/110662/possible-to-tag-a-folder-via-terminal
 #include "sys/xattr.h"
 #include "sys/types.h"
-const char *red="(\"error\n6\")";
-static char tagBuffer[128];
-BOOL reding(NSString *path, NSString *message)
+
+void comment(NSString *path, NSString *message)
 {
     //http://superuser.com/questions/82106/where-does-spotlight-store-its-metadata-index/256311#256311
     //osascript -e 'on run {f, c}' -e 'tell app "Finder" to set comment of (POSIX file f as alias) to c' -e end /Users/jacquesfauquex/a hola
@@ -64,9 +61,10 @@ BOOL reding(NSString *path, NSString *message)
                                          message
                                          ]
      ];
-    
-    return (-1!=setxattr([path fileSystemRepresentation], "com.apple.metadata:_kMDItemUserTags", red , strlen(red), 0, 0));
 }
+
+/*
+static char tagBuffer[128];
 const char *green="(\"done\n2\")";
 BOOL isGreen(NSString *path)
 {
@@ -77,6 +75,7 @@ BOOL isGreen(NSString *path)
     }
     return false;
 }
+*/
 
 int task(NSString *launchPath, NSArray *launchArgs, NSData *writeData, NSMutableData *readData)
 {
@@ -223,7 +222,7 @@ int main(int argc, const char * argv[])
                 NSURL *pacsURI=[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",pacsURIString,StudyInstanceUID]];
                 NSString *qidoRequest=[NSString stringWithFormat:@"%@?StudyInstanceUID=%@",pacsURIString,StudyInstanceUID];
                 NSURL *qidoRequestURL=[NSURL URLWithString:qidoRequest];
-                NSLog(@"%@ %@",
+                NSLog(@"%@ %@ in PACS before STOW",
                       StudyInstanceUID,
                       [NSString modalitieSeriesAndInstancesForQidoURL:qidoRequestURL]
                       );
@@ -250,14 +249,13 @@ int main(int argc, const char * argv[])
                 {
                     if ([SOPIUIDarray[i] hasPrefix:@"."]) continue;
                     
-                    [body appendData:cdbcData];
-                    [body appendData:ctadData];
-                    
                     NSString *filePath=[STUDYpath stringByAppendingPathComponent:SOPIUIDarray[i]];
                     NSString *COERCEDfile=[COERCEDpath stringByAppendingPathComponent:SOPIUIDarray[i]];
                     NSString *coercedErrorMessage=[Coerce coerceFileAtPath:filePath toPath:COERCEDfile withInstitutionName:institutionName];
                     if (!coercedErrorMessage)
                     {
+                        [body appendData:cdbcData];
+                        [body appendData:ctadData];
                         [body appendData:[NSData dataWithContentsOfFile:COERCEDfile]];
                         [packaged addObject:COERCEDfile];
                         [fileManager moveItemAtPath:filePath toPath:[ORIGINALSpath stringByAppendingPathComponent:SOPIUIDarray[i]] error:&error];
@@ -267,13 +265,14 @@ int main(int argc, const char * argv[])
                         //coerci—n imposible
                         //no se manda al PACS
                         //se traslada el original a DISCARDED
-                        NSLog(@"%@",coercedErrorMessage);
+                        //y se informa del problema en comentario
                         [fileManager moveItemAtPath:filePath toPath:[DISCARDEDpath stringByAppendingPathComponent:SOPIUIDarray[i]] error:&error];
+                        comment([DISCARDEDpath stringByAppendingPathComponent:SOPIUIDarray[i]], coercedErrorMessage);
                     }
                     
                     
         #pragma mark send stow
-                    if (([body length] > 10000000) || (i==SOPIUIDCount-1))
+                    if (([body length] > 10000000) || ((i==SOPIUIDCount-1) && [body length]))
                     {
                         //finalize body
                         [body appendData:cdbdcData];

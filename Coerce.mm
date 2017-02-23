@@ -57,7 +57,7 @@ BOOL setTS(NSString *path,int ts)
 {
     //return nil o mensaje de error
     DcmFileFormat fileformat;
-    if (fileformat.loadFile( [srcPath UTF8String]).bad()) return [@"can not load: " stringByAppendingString:srcPath];
+    if (fileformat.loadFile( [srcPath UTF8String]).bad()) return @"[WARN] can not load";
 
     DcmDataset *dataset = fileformat.getDataset();
 
@@ -71,7 +71,7 @@ BOOL setTS(NSString *path,int ts)
         case EXS_LittleEndianImplicit:
         case EXS_BigEndianExplicit:
             setTS(srcPath,tsno);
-            return [@"not explicit little endian: " stringByAppendingString:srcPath];
+            return @"[WARN] transfer syntax not explicit little endian";
         case EXS_LittleEndianExplicit:
             //discriminate por SOPClass  (xreq xdsc) hpdf tsel
             if ([sopclassstring isEqualToString:@"1.2.840.10008.5.1.4.1.1.104.2"]) setTS(srcPath,xdsc);
@@ -83,7 +83,7 @@ BOOL setTS(NSString *path,int ts)
             break;
         default:
             setTS(srcPath,ecdc);
-            return [@"encapsulated not j2kr: " stringByAppendingString:srcPath];
+            return @"[WARN] encapsulated not j2kr";
     }
     
     
