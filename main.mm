@@ -205,6 +205,7 @@ int main(int argc, const char * argv[])
                 if ([args count]>4) task(@"/bin/bash",@[@"-s"],[[NSString stringWithFormat:args[4],StudyInstanceUID] dataUsingEncoding:NSUTF8StringEncoding],sqlResponseData);
                 if ([sqlResponseData length])
                 {
+                    //studyUID already exists in PACS
                     [sqlResponseData getBytes:&lastByte range:NSMakeRange([sqlResponseData length]-1,1)];
                     NSString *sqlResponseString=nil;//remove eventual last space
                     if (lastByte==0x20) sqlResponseString=[[NSString alloc]initWithData:sqlResponseData encoding:NSUTF8StringEncoding];
@@ -217,6 +218,19 @@ int main(int argc, const char * argv[])
                         NSString *DISCARDEDpath=[[DISCARDED stringByAppendingPathComponent:CLASSIFIEDname]stringByAppendingPathComponent:StudyInstanceUID];
                         [fileManager createDirectoryAtPath:DISCARDEDpath withIntermediateDirectories:YES attributes:nil error:&error];
                         [fileManager moveItemAtPath:STUDYpath toPath:DISCARDEDpath  error:&error];
+                        
+                        //comment DISCARDEDpath
+                        NSDictionary *q=
+                        [NSDictionary studyAttributesForQidoURL:
+                         [NSURL URLWithString:
+                          [NSString stringWithFormat:
+                           @"%@?StudyInstanceUID=%@",
+                           [NSString stringWithFormat:args[3],sqlResponseString],
+                           StudyInstanceUID
+                          ]
+                         ]
+                        ];
+                        comment(DISCARDEDpath, [NSString stringWithFormat:@"[WARN] dest %@ unacceptable. StudyUID found in %@  %@ (%@/%@) for patient with ID %@",institutionName,sqlResponseString,q[@"00080061"],q[@"00201206"],q[@"00201208"],q[@"00100020"]]);
                         continue;
                     }
                 }
@@ -224,13 +238,13 @@ int main(int argc, const char * argv[])
                 NSString *qidoRequest=[NSString stringWithFormat:@"%@?StudyInstanceUID=%@",pacsURIString,StudyInstanceUID];
                 NSURL *qidoRequestURL=[NSURL URLWithString:qidoRequest];
                 NSDictionary *q=[NSDictionary studyAttributesForQidoURL:qidoRequestURL];
-                NSLog(@"%@ %@ (%@/%@) in PACS before STOW",
+                NSLog(@"%@ %@ (%@/%@) for patient %@ in PACS before STOW",
                       StudyInstanceUID,
                       q[@"00080061"],
                       q[@"00201206"],
-                      q[@"00201208"]
+                      q[@"00201208"],
+                      q[@"00100020"]
                       );
-
                 
                 NSString *COERCEDpath=[[COERCED stringByAppendingPathComponent:CLASSIFIEDname] stringByAppendingPathComponent:StudyInstanceUID];
                 [fileManager createDirectoryAtPath:COERCEDpath withIntermediateDirectories:YES attributes:nil error:&error];
