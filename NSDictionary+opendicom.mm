@@ -5,7 +5,9 @@
 +(NSDictionary*)studyAttributesForQidoURL:(NSURL*)url
 {
     NSData *qidoData=[NSData dataWithContentsOfURL:url];
-    if (qidoData)
+    //NSString *r=[[NSString alloc]initWithData:qidoData encoding:NSUTF8StringEncoding];
+    //NSLog(@"%@",r);
+    if (qidoData && [qidoData length])
     {
         NSDictionary *d=[NSJSONSerialization JSONObjectWithData:qidoData options:0 error:nil][0];
         return @{

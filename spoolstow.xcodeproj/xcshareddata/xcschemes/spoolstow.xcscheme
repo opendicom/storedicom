@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/Shared/storescp/ml.plist"
+            argument = "/Users/Shared/storescp/institutionMapping.plist"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

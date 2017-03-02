@@ -155,7 +155,7 @@ int main(int argc, const char * argv[])
         NSArray *args=[[NSProcessInfo processInfo] arguments];
         NSDictionary *institutionMapping=nil;
         institutionMapping=[NSDictionary dictionaryWithContentsOfFile:args[1]];
-        NSLog(@"%@",[institutionMapping description]);
+        //NSLog(@"%@",[institutionMapping description]);
         
         NSFileManager *fileManager=[NSFileManager defaultManager];
         NSString *CLASSIFIED=[args[2] stringByAppendingPathComponent:@"CLASSIFIED"];
@@ -191,11 +191,15 @@ int main(int argc, const char * argv[])
                 continue;
             }
             NSString *pacsURIString=[NSString stringWithFormat:args[3],institutionName];
+            NSArray *CLASSIFIEDpathContents=[fileManager contentsOfDirectoryAtPath:CLASSIFIEDpath error:nil];
+            
+            if (![CLASSIFIEDpathContents count]) continue;
+            if (([CLASSIFIEDpathContents count]==1)&&([CLASSIFIEDpathContents[0] hasPrefix:@"."])) continue;
             NSLog(@"%@ -> %@",CLASSIFIEDname,institutionName);
 
             
 #pragma mark loop STUDIES
-            for (NSString *StudyInstanceUID in [fileManager contentsOfDirectoryAtPath:CLASSIFIEDpath error:nil])
+            for (NSString *StudyInstanceUID in CLASSIFIEDpathContents)
             {
                 if ([StudyInstanceUID hasPrefix:@"."]) continue;
 
@@ -236,7 +240,9 @@ int main(int argc, const char * argv[])
                 }
                 NSURL *pacsURI=[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",pacsURIString,StudyInstanceUID]];
                 NSString *qidoRequest=[NSString stringWithFormat:@"%@?StudyInstanceUID=%@",pacsURIString,StudyInstanceUID];
+                //NSLog(@"qido inicial: %@",qidoRequest);
                 NSURL *qidoRequestURL=[NSURL URLWithString:qidoRequest];
+                
                 NSDictionary *q=[NSDictionary studyAttributesForQidoURL:qidoRequestURL];
                 NSLog(@"%@ %@ (%@/%@) for patient %@ in PACS before STOW",
                       StudyInstanceUID,
