@@ -314,7 +314,16 @@ int main(int argc, const char * argv[])
                         //send stow
                         NSHTTPURLResponse *stowResponse;
                         NSData *responseData=[NSURLConnection sendSynchronousRequest:request returningResponse:&stowResponse error:&error];
-                     
+                        
+                        NSLog(@"%@ %@ (%@/%@) [+%d]",
+                              StudyInstanceUID,
+                              q[@"00080061"],
+                              q[@"00201206"],
+                              q[@"00201208"],
+                              [body length]
+                              );
+                        
+                        
                         if (  !responseData
                             ||!(
                                 ([stowResponse statusCode]==200)
@@ -322,7 +331,8 @@ int main(int argc, const char * argv[])
                                 )
                             )
                         {
-                            NSLog(@"%@\r\nstow response statusCode:%d\r\n%@",pacsURI,[stowResponse statusCode],[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]);
+                            //incomplete acceptance or rejection
+                            NSLog(@"\r\n-----------------\r\n%@\r\nstow response statusCode:%d\r\n%@\r\n=================\r\n",pacsURI,[stowResponse statusCode],[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]);
 
                             //Failure
                              //=======
@@ -353,18 +363,12 @@ int main(int argc, const char * argv[])
                         }
                         else
                         {
+                            //full acceptance
                             for (NSString *fp in packaged)
                             {
                                 [fileManager moveItemAtPath:fp toPath:[STOWEDpath stringByAppendingPathComponent:[fp lastPathComponent]] error:&error];
                             }
                             NSDictionary *q=[NSDictionary studyAttributesForQidoURL:qidoRequestURL];
-                            NSLog(@"%@ %@ (%@/%@) [+%d]",
-                                  StudyInstanceUID,
-                                  q[@"00080061"],
-                                  q[@"00201206"],
-                                  q[@"00201208"],
-                                  [body length]
-                                  );
                         }
                         [body setData:[NSData data]];
                         [packaged removeAllObjects];
