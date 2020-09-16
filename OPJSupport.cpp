@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <iostream>
 
-#include <ofthread.h>
+#include "ofthread.h"
 
 //#define WITH_OPJ_BUFFER_STREAM
 #define WITH_OPJ_FILE_STREAM

@@ -199,7 +199,7 @@ static NSArray *vrs=@[
     if (!values || ![values isKindOfClass:[NSArray class]])return nil;
     
     NSUInteger dcmEVR=[vrs indexOfObject:[jsonObject objectForKey:@"vr"]];
-    NSLog(@"%d",dcmEVR);
+   NSLog(@"%lu",(unsigned long)dcmEVR);
     switch (dcmEVR) {
         case NSNotFound: return nil;
         case  0: return nil;// @"EVR_AE";//AE title string

@@ -315,12 +315,12 @@ int main(int argc, const char * argv[])
                         NSHTTPURLResponse *stowResponse;
                         NSData *responseData=[NSURLConnection sendSynchronousRequest:request returningResponse:&stowResponse error:&error];
                         
-                        NSLog(@"%@ %@ (%@/%@) [+%d]",
+                        NSLog(@"%@ %@ (%@/%@) [+%lu]",
                               StudyInstanceUID,
                               q[@"00080061"],
                               q[@"00201206"],
                               q[@"00201208"],
-                              [body length]
+                              (unsigned long)body.length
                               );
                         
                         
@@ -332,7 +332,11 @@ int main(int argc, const char * argv[])
                             )
                         {
                             //incomplete acceptance or rejection
-                            NSLog(@"\r\n-----------------\r\n%@\r\nstow response statusCode:%d\r\n%@\r\n=================\r\n",pacsURI,[stowResponse statusCode],[[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]);
+                           NSLog(@"\r\n-----------------\r\n%@\r\nstow response statusCode:%ld\r\n%@\r\n=================\r\n",
+                                 pacsURI,
+                                 (long)stowResponse .statusCode,
+                                 [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding]
+                                 );
 
                             //Failure
                              //=======
@@ -368,7 +372,7 @@ int main(int argc, const char * argv[])
                             {
                                 [fileManager moveItemAtPath:fp toPath:[STOWEDpath stringByAppendingPathComponent:[fp lastPathComponent]] error:&error];
                             }
-                            NSDictionary *q=[NSDictionary studyAttributesForQidoURL:qidoRequestURL];
+                            //NSDictionary *q=[NSDictionary studyAttributesForQidoURL:qidoRequestURL];
                         }
                         [body setData:[NSData data]];
                         [packaged removeAllObjects];
