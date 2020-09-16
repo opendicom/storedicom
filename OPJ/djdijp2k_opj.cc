@@ -54,16 +54,17 @@
 #undef HAVE_STDDEF_H
 #endif
 
+// disable any preprocessor magic the IJG library might be doing with the "const" keyword
+#ifdef const
+#undef const
+#endif
+
+
 BEGIN_EXTERN_C
 #define boolean ijg_boolean
 #include "jpeglib16.h"
 #include "jerror16.h"
 #undef boolean
-
-// disable any preprocessor magic the IJG library might be doing with the "const" keyword
-#ifdef const
-#undef const
-#endif
 
 
 DJDecompressJP2k::DJDecompressJP2k(const DJCodecParameter& cp, OFBool isYBR)

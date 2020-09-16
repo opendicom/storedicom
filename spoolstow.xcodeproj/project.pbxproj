@@ -1122,8 +1122,8 @@
 		4A1685991DE7593D007E10B2 /* OPJSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPJSupport.h; sourceTree = "<group>"; };
 		4A1687121DE75970007E10B2 /* OPJ */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OPJ; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A1687141DE75A14007E10B2 /* OPJ.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OPJ.mm; sourceTree = "<group>"; };
-		4A16871C1DE75EA4007E10B2 /* djdijp2k_opj.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = djdijp2k_opj.cc; path = "Binaries/dcmtk-source/dcmjpeg/djdijp2k_opj.cc"; sourceTree = "<group>"; };
-		4A1687201DE76200007E10B2 /* djeijg2k_opj.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = djeijg2k_opj.cc; path = "Binaries/dcmtk-source/dcmjpeg/djeijg2k_opj.cc"; sourceTree = "<group>"; };
+		4A16871C1DE75EA4007E10B2 /* djdijp2k_opj.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = djdijp2k_opj.cc; sourceTree = "<group>"; };
+		4A1687201DE76200007E10B2 /* djeijg2k_opj.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = djeijg2k_opj.cc; sourceTree = "<group>"; };
 		4A169D771DE7B8DC007E10B2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4A169EF51DECA012007E10B2 /* dcmtk */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dcmtk; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A169EFD1DECA4C1007E10B2 /* djdijp2k.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = djdijp2k.cc; path = "Binaries/dcmtk-source/dcmjpeg/djdijp2k.cc"; sourceTree = "<group>"; };
@@ -2065,14 +2065,15 @@
 		29B97314FDCFA39411CA2CEA /* OsiriX */ = {
 			isa = PBXGroup;
 			children = (
+				4A0EAA062512888C00D9C369 /* categories */,
+				4A1685931DE75871007E10B2 /* libopenjp2.a */,
+				4A0EAA05251287C400D9C369 /* OPJ */,
 				4A1DBBA31E5B814700D45158 /* Coerce.h */,
 				4A1DBBA41E5B814700D45158 /* Coerce.mm */,
 				4A0EBA3F1DEEDAA000ECDC6C /* TODO.txt */,
 				4A16A7701DED1A64007E10B2 /* main.mm */,
 				4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */,
 				4A169D771DE7B8DC007E10B2 /* README.md */,
-				4A1685921DE71C8F007E10B2 /* OPJ64 */,
-				AB724F1C0ADE6CFC00A212A0 /* categories */,
 				BFBF3AAF09B6820C00545F5E /* dcmtk */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -2092,7 +2093,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4A1685921DE71C8F007E10B2 /* OPJ64 */ = {
+		4A0EAA05251287C400D9C369 /* OPJ */ = {
 			isa = PBXGroup;
 			children = (
 				4A1687141DE75A14007E10B2 /* OPJ.mm */,
@@ -2101,11 +2102,21 @@
 				4A1685941DE758F4007E10B2 /* format_defs.h */,
 				4A1685951DE758F4007E10B2 /* openjpeg.h */,
 				4A1685971DE758F4007E10B2 /* opj_stdint.h */,
-				4A1685931DE75871007E10B2 /* libopenjp2.a */,
 				4A16871C1DE75EA4007E10B2 /* djdijp2k_opj.cc */,
 				4A1687201DE76200007E10B2 /* djeijg2k_opj.cc */,
 			);
-			name = OPJ64;
+			path = OPJ;
+			sourceTree = "<group>";
+		};
+		4A0EAA062512888C00D9C369 /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */,
+				8426A79E1E5F2B16009E2EAD /* NSDictionary+opendicom.mm */,
+				4A04FF241CD924B900A8BB5D /* NSString+opendicom.h */,
+				4A04FF251CD924B900A8BB5D /* NSString+opendicom.mm */,
+			);
+			path = categories;
 			sourceTree = "<group>";
 		};
 		4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */ = {
@@ -2380,17 +2391,6 @@
 				4A16A2071DECABC5007E10B2 /* ofuoset.h */,
 			);
 			name = "dcmtk-j2kr(static)";
-			sourceTree = "<group>";
-		};
-		AB724F1C0ADE6CFC00A212A0 /* categories */ = {
-			isa = PBXGroup;
-			children = (
-				8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */,
-				8426A79E1E5F2B16009E2EAD /* NSDictionary+opendicom.mm */,
-				4A04FF241CD924B900A8BB5D /* NSString+opendicom.h */,
-				4A04FF251CD924B900A8BB5D /* NSString+opendicom.mm */,
-			);
-			name = categories;
 			sourceTree = "<group>";
 		};
 		BFBF3AAF09B6820C00545F5E /* dcmtk */ = {
