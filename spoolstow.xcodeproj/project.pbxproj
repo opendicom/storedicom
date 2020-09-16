@@ -1396,20 +1396,7 @@
 		4A16A7701DED1A64007E10B2 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		4A1DBBA31E5B814700D45158 /* Coerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coerce.h; sourceTree = "<group>"; };
 		4A1DBBA41E5B814700D45158 /* Coerce.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Coerce.mm; sourceTree = "<group>"; };
-		4A9059EC1CEF908600A9CA2F /* ODvr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODvr.h; sourceTree = "<group>"; };
 		4AA0A5F21E48E3A2005B3E9D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		4AC642D81CE57FF500A25E46 /* ODMetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODMetaInfo.h; sourceTree = "<group>"; };
-		4AC642D91CE57FF500A25E46 /* ODMetaInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODMetaInfo.mm; sourceTree = "<group>"; };
-		4AC642DD1CE6275F00A25E46 /* ODSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODSequence.h; sourceTree = "<group>"; };
-		4AC642DE1CE6275F00A25E46 /* ODSequence.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODSequence.mm; sourceTree = "<group>"; };
-		4AC642E11CE6AAF000A25E46 /* ODElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODElement.h; sourceTree = "<group>"; };
-		4AC642E21CE6AAF000A25E46 /* ODElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODElement.mm; sourceTree = "<group>"; };
-		4AC642E71CE9775900A25E46 /* ODItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODItem.h; sourceTree = "<group>"; };
-		4AC642E81CE9775900A25E46 /* ODItem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODItem.mm; sourceTree = "<group>"; };
-		4AF940611CE5720100551476 /* ODDataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODDataset.h; sourceTree = "<group>"; };
-		4AF940621CE5720100551476 /* ODDataset.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODDataset.mm; sourceTree = "<group>"; };
-		4AF940651CE5720100551476 /* ODFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODFile.h; sourceTree = "<group>"; };
-		4AF940661CE5720100551476 /* ODFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ODFile.mm; sourceTree = "<group>"; };
 		8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+opendicom.h"; sourceTree = "<group>"; };
 		8426A79E1E5F2B16009E2EAD /* NSDictionary+opendicom.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSDictionary+opendicom.mm"; sourceTree = "<group>"; };
 		AB5E1A300595697700C48BEB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
@@ -2085,7 +2072,6 @@
 				4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */,
 				4A169D771DE7B8DC007E10B2 /* README.md */,
 				4A1685921DE71C8F007E10B2 /* OPJ64 */,
-				4AF940601CE5720100551476 /* OD */,
 				AB724F1C0ADE6CFC00A212A0 /* categories */,
 				BFBF3AAF09B6820C00545F5E /* dcmtk */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -2394,26 +2380,6 @@
 				4A16A2071DECABC5007E10B2 /* ofuoset.h */,
 			);
 			name = "dcmtk-j2kr(static)";
-			sourceTree = "<group>";
-		};
-		4AF940601CE5720100551476 /* OD */ = {
-			isa = PBXGroup;
-			children = (
-				4AC642E71CE9775900A25E46 /* ODItem.h */,
-				4AC642E81CE9775900A25E46 /* ODItem.mm */,
-				4AF940611CE5720100551476 /* ODDataset.h */,
-				4AF940621CE5720100551476 /* ODDataset.mm */,
-				4AC642D81CE57FF500A25E46 /* ODMetaInfo.h */,
-				4AC642D91CE57FF500A25E46 /* ODMetaInfo.mm */,
-				4AC642DD1CE6275F00A25E46 /* ODSequence.h */,
-				4AC642DE1CE6275F00A25E46 /* ODSequence.mm */,
-				4AC642E11CE6AAF000A25E46 /* ODElement.h */,
-				4AC642E21CE6AAF000A25E46 /* ODElement.mm */,
-				4AF940651CE5720100551476 /* ODFile.h */,
-				4AF940661CE5720100551476 /* ODFile.mm */,
-				4A9059EC1CEF908600A9CA2F /* ODvr.h */,
-			);
-			path = OD;
 			sourceTree = "<group>";
 		};
 		AB724F1C0ADE6CFC00A212A0 /* categories */ = {
@@ -3342,6 +3308,7 @@
 				4A1685F01DE75970007E10B2 /* ofdatime.cc in Sources */,
 				4A1685F11DE75970007E10B2 /* offname.cc in Sources */,
 				4A1685F21DE75970007E10B2 /* oflist.cc in Sources */,
+				4A1687151DE75A14007E10B2 /* OPJ.mm in Sources */,
 				4A1685F31DE75970007E10B2 /* oflogfil.cc in Sources */,
 				4A1685F41DE75970007E10B2 /* ofstd.cc in Sources */,
 				4A1685F51DE75970007E10B2 /* ofstring.cc in Sources */,
@@ -3349,7 +3316,6 @@
 				4A1685F71DE75970007E10B2 /* jcapimin.c in Sources */,
 				4A1685F81DE75970007E10B2 /* jcapistd.c in Sources */,
 				4A1685F91DE75970007E10B2 /* jcarith.c in Sources */,
-				4A1687151DE75A14007E10B2 /* OPJ.mm in Sources */,
 				4A1685FA1DE75970007E10B2 /* jccoefct.c in Sources */,
 				4A1685FB1DE75970007E10B2 /* jccolor.c in Sources */,
 				4A1685FC1DE75970007E10B2 /* jcdctmgr.c in Sources */,
@@ -3599,6 +3565,7 @@
 				4A1686F01DE75970007E10B2 /* jctrans.c in Sources */,
 				4A1686F11DE75970007E10B2 /* jcshuff.c in Sources */,
 				4A1686F21DE75970007E10B2 /* jcsample.c in Sources */,
+				4A1687091DE75970007E10B2 /* NSString+opendicom.mm in Sources */,
 				4A1686F31DE75970007E10B2 /* jcmarker.c in Sources */,
 				4A1686F41DE75970007E10B2 /* jcmainct.c in Sources */,
 				4A1686F51DE75970007E10B2 /* jcdctmgr.c in Sources */,
@@ -3613,7 +3580,6 @@
 				4A1686FD1DE75970007E10B2 /* jcshuff.c in Sources */,
 				4A1686FE1DE75970007E10B2 /* djdec2k.cc in Sources */,
 				4A1687001DE75970007E10B2 /* djenc2k.cc in Sources */,
-				4A1687091DE75970007E10B2 /* NSString+opendicom.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3724,6 +3690,7 @@
 				4A169DEB1DECA012007E10B2 /* jclhuff.c in Sources */,
 				4A169DEC1DECA012007E10B2 /* jclossls.c in Sources */,
 				4A169DED1DECA012007E10B2 /* jclossy.c in Sources */,
+				8426A7A01E5F2B17009E2EAD /* NSDictionary+opendicom.mm in Sources */,
 				4A169DEE1DECA012007E10B2 /* jcmainct.c in Sources */,
 				4A169DEF1DECA012007E10B2 /* jcmarker.c in Sources */,
 				4A169DF01DECA012007E10B2 /* jcmaster.c in Sources */,
@@ -3775,7 +3742,6 @@
 				4A169E1E1DECA012007E10B2 /* jquant1.c in Sources */,
 				4A169E1F1DECA012007E10B2 /* jquant2.c in Sources */,
 				4A169E201DECA012007E10B2 /* jutils.c in Sources */,
-				8426A7A01E5F2B17009E2EAD /* NSDictionary+opendicom.mm in Sources */,
 				4A169E211DECA012007E10B2 /* djdecode.cc in Sources */,
 				4A169E221DECA012007E10B2 /* djencode.cc in Sources */,
 				4A169E231DECA012007E10B2 /* ddpiimpl.cc in Sources */,
@@ -3802,12 +3768,12 @@
 				4A169E381DECA012007E10B2 /* djrploss.cc in Sources */,
 				4A169E391DECA012007E10B2 /* djrplol.cc in Sources */,
 				4A169E3A1DECA012007E10B2 /* djencsv1.cc in Sources */,
+				4A1DBBA61E5B814700D45158 /* Coerce.mm in Sources */,
 				4A169E3B1DECA012007E10B2 /* djencsps.cc in Sources */,
 				4A169E3C1DECA012007E10B2 /* djencpro.cc in Sources */,
 				4A169E3D1DECA012007E10B2 /* diargimg.cc in Sources */,
 				4A169E3E1DECA012007E10B2 /* dicmyimg.cc in Sources */,
 				4A169E3F1DECA012007E10B2 /* dicoimg.cc in Sources */,
-				4A1DBBA61E5B814700D45158 /* Coerce.mm in Sources */,
 				4A169E401DECA012007E10B2 /* dicoopx.cc in Sources */,
 				4A169E411DECA012007E10B2 /* dicopx.cc in Sources */,
 				4A169E421DECA012007E10B2 /* diyp2img.cc in Sources */,
