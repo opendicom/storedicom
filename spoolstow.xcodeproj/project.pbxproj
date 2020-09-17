@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4A0EA9EC251226E400D9C369 /* djeijg2k.h in Headers */ = {isa = PBXBuildFile; fileRef = CEFF01431286FB2000D69BB8 /* djeijg2k.h */; };
 		4A0EA9ED2512270F00D9C369 /* djdec2k.h in Headers */ = {isa = PBXBuildFile; fileRef = CEFFFE241286895300D69BB8 /* djdec2k.h */; };
-		4A0EA9FB25124FB100D9C369 /* libopenjp2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1685931DE75871007E10B2 /* libopenjp2.a */; };
 		4A0EA9FC25124FE600D9C369 /* djdijp2k_opj.cc in Sources */ = {isa = PBXBuildFile; fileRef = 4A16871C1DE75EA4007E10B2 /* djdijp2k_opj.cc */; };
 		4A0EA9FD25124FEA00D9C369 /* djeijg2k_opj.cc in Sources */ = {isa = PBXBuildFile; fileRef = 4A1687201DE76200007E10B2 /* djeijg2k_opj.cc */; };
 		4A0EA9FE25124FF700D9C369 /* OPJSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A1685981DE7593D007E10B2 /* OPJSupport.cpp */; };
@@ -18,6 +17,8 @@
 		4A0EAA022512505000D9C369 /* openjpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1685951DE758F4007E10B2 /* openjpeg.h */; };
 		4A0EAA032512505B00D9C369 /* opj_stdint.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1685971DE758F4007E10B2 /* opj_stdint.h */; };
 		4A0EAA042512524300D9C369 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A16A7701DED1A64007E10B2 /* main.mm */; };
+		4A0EAA0C2513648000D9C369 /* libopenjp2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0EAA0B2513648000D9C369 /* libopenjp2.a */; };
+		4A0EAA0D2513648000D9C369 /* libopenjp2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0EAA0B2513648000D9C369 /* libopenjp2.a */; };
 		4A16859F1DE75970007E10B2 /* dcfilefo.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3AD809B6827D00545F5E /* dcfilefo.cc */; };
 		4A1685A01DE75970007E10B2 /* dcxfer.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3B5309B6827F00545F5E /* dcxfer.cc */; };
 		4A1685A11DE75970007E10B2 /* dcvrut.cc in Sources */ = {isa = PBXBuildFile; fileRef = BFBF3B5109B6827F00545F5E /* dcvrut.cc */; };
@@ -373,7 +374,6 @@
 		4A1687091DE75970007E10B2 /* NSString+opendicom.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A04FF251CD924B900A8BB5D /* NSString+opendicom.mm */; };
 		4A16870B1DE75970007E10B2 /* libz.1.2.8.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1685891DE6584D007E10B2 /* libz.1.2.8.tbd */; };
 		4A16870C1DE75970007E10B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
-		4A1687131DE759DF007E10B2 /* libopenjp2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1685931DE75871007E10B2 /* libopenjp2.a */; };
 		4A1687151DE75A14007E10B2 /* OPJ.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A1687141DE75A14007E10B2 /* OPJ.mm */; };
 		4A1687161DE75A40007E10B2 /* OPJSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1685991DE7593D007E10B2 /* OPJSupport.h */; };
 		4A1687171DE75A44007E10B2 /* format_defs.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1685941DE758F4007E10B2 /* format_defs.h */; };
@@ -1111,10 +1111,10 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		4A04FF241CD924B900A8BB5D /* NSString+opendicom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+opendicom.h"; sourceTree = "<group>"; };
 		4A04FF251CD924B900A8BB5D /* NSString+opendicom.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+opendicom.mm"; sourceTree = "<group>"; };
+		4A0EAA0B2513648000D9C369 /* libopenjp2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopenjp2.a; sourceTree = "<group>"; };
 		4A0EBA3F1DEEDAA000ECDC6C /* TODO.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
 		4A13DA7B1E039D8600D4ED4D /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		4A1685891DE6584D007E10B2 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
-		4A1685931DE75871007E10B2 /* libopenjp2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopenjp2.a; sourceTree = "<group>"; };
 		4A1685941DE758F4007E10B2 /* format_defs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = format_defs.h; sourceTree = "<group>"; };
 		4A1685951DE758F4007E10B2 /* openjpeg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = openjpeg.h; sourceTree = "<group>"; };
 		4A1685971DE758F4007E10B2 /* opj_stdint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = opj_stdint.h; sourceTree = "<group>"; };
@@ -2025,8 +2025,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A16870B1DE75970007E10B2 /* libz.1.2.8.tbd in Frameworks */,
+				4A0EAA0C2513648000D9C369 /* libopenjp2.a in Frameworks */,
 				4A16870C1DE75970007E10B2 /* Foundation.framework in Frameworks */,
-				4A1687131DE759DF007E10B2 /* libopenjp2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2044,8 +2044,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A16A76B1DED1900007E10B2 /* libz.1.2.8.tbd in Frameworks */,
+				4A0EAA0D2513648000D9C369 /* libopenjp2.a in Frameworks */,
 				4A16A76C1DED1900007E10B2 /* Foundation.framework in Frameworks */,
-				4A0EA9FB25124FB100D9C369 /* libopenjp2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2065,8 +2065,8 @@
 		29B97314FDCFA39411CA2CEA /* OsiriX */ = {
 			isa = PBXGroup;
 			children = (
+				4A0EAA0B2513648000D9C369 /* libopenjp2.a */,
 				4A0EAA062512888C00D9C369 /* categories */,
-				4A1685931DE75871007E10B2 /* libopenjp2.a */,
 				4A0EAA05251287C400D9C369 /* OPJ */,
 				4A1DBBA31E5B814700D45158 /* Coerce.h */,
 				4A1DBBA41E5B814700D45158 /* Coerce.mm */,
@@ -4338,6 +4338,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
