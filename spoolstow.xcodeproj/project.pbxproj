@@ -2065,15 +2065,14 @@
 		29B97314FDCFA39411CA2CEA /* OsiriX */ = {
 			isa = PBXGroup;
 			children = (
-				4A0EAA0B2513648000D9C369 /* libopenjp2.a */,
-				4A0EAA062512888C00D9C369 /* categories */,
-				4A0EAA05251287C400D9C369 /* OPJ */,
+				4A0EBA3F1DEEDAA000ECDC6C /* TODO.txt */,
+				4A169D771DE7B8DC007E10B2 /* README.md */,
+				4A16A7701DED1A64007E10B2 /* main.mm */,
 				4A1DBBA31E5B814700D45158 /* Coerce.h */,
 				4A1DBBA41E5B814700D45158 /* Coerce.mm */,
-				4A0EBA3F1DEEDAA000ECDC6C /* TODO.txt */,
-				4A16A7701DED1A64007E10B2 /* main.mm */,
+				4A0EAA062512888C00D9C369 /* categories */,
+				4A0EAA05251287C400D9C369 /* OPJ */,
 				4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */,
-				4A169D771DE7B8DC007E10B2 /* README.md */,
 				BFBF3AAF09B6820C00545F5E /* dcmtk */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -2097,6 +2096,7 @@
 			isa = PBXGroup;
 			children = (
 				4A1687141DE75A14007E10B2 /* OPJ.mm */,
+				4A0EAA0B2513648000D9C369 /* libopenjp2.a */,
 				4A1685981DE7593D007E10B2 /* OPJSupport.cpp */,
 				4A1685991DE7593D007E10B2 /* OPJSupport.h */,
 				4A1685941DE758F4007E10B2 /* format_defs.h */,
@@ -3223,7 +3223,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1687151DE75A14007E10B2 /* OPJ.mm in Sources */,
 				4A16871B1DE75AAB007E10B2 /* OPJSupport.cpp in Sources */,
+				4A1687091DE75970007E10B2 /* NSString+opendicom.mm in Sources */,
+				4A1687001DE75970007E10B2 /* djenc2k.cc in Sources */,
+				4A1687211DE76200007E10B2 /* djeijg2k_opj.cc in Sources */,
 				4A16859F1DE75970007E10B2 /* dcfilefo.cc in Sources */,
 				4A1685A01DE75970007E10B2 /* dcxfer.cc in Sources */,
 				4A1685A11DE75970007E10B2 /* dcvrut.cc in Sources */,
@@ -3282,9 +3286,11 @@
 				4A1685D61DE75970007E10B2 /* dcistrmz.cc in Sources */,
 				4A1685D71DE75970007E10B2 /* dcistrmf.cc in Sources */,
 				4A1685D81DE75970007E10B2 /* dcistrmb.cc in Sources */,
+				4A16871D1DE75EA4007E10B2 /* djdijp2k_opj.cc in Sources */,
 				4A1685D91DE75970007E10B2 /* dcistrma.cc in Sources */,
 				4A1685DA1DE75970007E10B2 /* dchashdi.cc in Sources */,
 				4A1685DB1DE75970007E10B2 /* dcerror.cc in Sources */,
+				4A1686FE1DE75970007E10B2 /* djdec2k.cc in Sources */,
 				4A1685DC1DE75970007E10B2 /* dcelem.cc in Sources */,
 				4A1685DD1DE75970007E10B2 /* dcdirrec.cc in Sources */,
 				4A1685DE1DE75970007E10B2 /* dcdictbi.cc in Sources */,
@@ -3308,7 +3314,6 @@
 				4A1685F01DE75970007E10B2 /* ofdatime.cc in Sources */,
 				4A1685F11DE75970007E10B2 /* offname.cc in Sources */,
 				4A1685F21DE75970007E10B2 /* oflist.cc in Sources */,
-				4A1687151DE75A14007E10B2 /* OPJ.mm in Sources */,
 				4A1685F31DE75970007E10B2 /* oflogfil.cc in Sources */,
 				4A1685F41DE75970007E10B2 /* ofstd.cc in Sources */,
 				4A1685F51DE75970007E10B2 /* ofstring.cc in Sources */,
@@ -3553,7 +3558,6 @@
 				4A1686E51DE75970007E10B2 /* jcphuff.c in Sources */,
 				4A1686E61DE75970007E10B2 /* jcparam.c in Sources */,
 				4A1686E71DE75970007E10B2 /* jcomapi.c in Sources */,
-				4A1687211DE76200007E10B2 /* djeijg2k_opj.cc in Sources */,
 				4A1686E81DE75970007E10B2 /* jcodec.c in Sources */,
 				4A1686E91DE75970007E10B2 /* jcmaster.c in Sources */,
 				4A1686EA1DE75970007E10B2 /* jcinit.c in Sources */,
@@ -3565,21 +3569,17 @@
 				4A1686F01DE75970007E10B2 /* jctrans.c in Sources */,
 				4A1686F11DE75970007E10B2 /* jcshuff.c in Sources */,
 				4A1686F21DE75970007E10B2 /* jcsample.c in Sources */,
-				4A1687091DE75970007E10B2 /* NSString+opendicom.mm in Sources */,
 				4A1686F31DE75970007E10B2 /* jcmarker.c in Sources */,
 				4A1686F41DE75970007E10B2 /* jcmainct.c in Sources */,
 				4A1686F51DE75970007E10B2 /* jcdctmgr.c in Sources */,
 				4A1686F61DE75970007E10B2 /* jclossy.c in Sources */,
 				4A1686F71DE75970007E10B2 /* jclossls.c in Sources */,
 				4A1686F81DE75970007E10B2 /* jclhuff.c in Sources */,
-				4A16871D1DE75EA4007E10B2 /* djdijp2k_opj.cc in Sources */,
 				4A1686F91DE75970007E10B2 /* jccolor.c in Sources */,
 				4A1686FA1DE75970007E10B2 /* jcarith.c in Sources */,
 				4A1686FB1DE75970007E10B2 /* jcapistd.c in Sources */,
 				4A1686FC1DE75970007E10B2 /* jcdiffct.c in Sources */,
 				4A1686FD1DE75970007E10B2 /* jcshuff.c in Sources */,
-				4A1686FE1DE75970007E10B2 /* djdec2k.cc in Sources */,
-				4A1687001DE75970007E10B2 /* djenc2k.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3951,12 +3951,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A0EA9FE25124FF700D9C369 /* OPJSupport.cpp in Sources */,
-				4A0EA9FD25124FEA00D9C369 /* djeijg2k_opj.cc in Sources */,
-				4A0EA9FC25124FE600D9C369 /* djdijp2k_opj.cc in Sources */,
-				4A1DBBA81E5B843400D45158 /* Coerce.mm in Sources */,
-				8426A7A31E5F2EF8009E2EAD /* NSDictionary+opendicom.mm in Sources */,
 				841E653C1E53488A00CDA264 /* main.mm in Sources */,
+				4A1DBBA81E5B843400D45158 /* Coerce.mm in Sources */,
+				4A0EA9FE25124FF700D9C369 /* OPJSupport.cpp in Sources */,
+				8426A7A31E5F2EF8009E2EAD /* NSDictionary+opendicom.mm in Sources */,
+				4A16A7681DED1900007E10B2 /* NSString+opendicom.mm in Sources */,
+				4A0EA9FC25124FE600D9C369 /* djdijp2k_opj.cc in Sources */,
+				4A16A7641DED1900007E10B2 /* djdec2k.cc in Sources */,
+				4A16A7661DED1900007E10B2 /* djenc2k.cc in Sources */,
+				4A0EA9FD25124FEA00D9C369 /* djeijg2k_opj.cc in Sources */,
 				4A16A6051DED1900007E10B2 /* dcfilefo.cc in Sources */,
 				4A16A6061DED1900007E10B2 /* dcxfer.cc in Sources */,
 				4A16A6071DED1900007E10B2 /* dcvrut.cc in Sources */,
@@ -4307,9 +4310,6 @@
 				4A16A7601DED1900007E10B2 /* jcapistd.c in Sources */,
 				4A16A7611DED1900007E10B2 /* jcdiffct.c in Sources */,
 				4A16A7621DED1900007E10B2 /* jcshuff.c in Sources */,
-				4A16A7641DED1900007E10B2 /* djdec2k.cc in Sources */,
-				4A16A7661DED1900007E10B2 /* djenc2k.cc in Sources */,
-				4A16A7681DED1900007E10B2 /* NSString+opendicom.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
