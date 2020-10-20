@@ -3,10 +3,8 @@ TODO
 
 NOT TO DO: (be careful): Received dicom files should not be editable.
 
-Move to latest dcmtk used through dcmtk-objc (should be a dependency and the files should not be copied to storestow target)
-
 Create a stow URLsession routine
 
 Improve checking of stow results
 
-Optionally consume MWL through findscu+dcmtk-objc and based on it and on a diccionary with rules, coerce the metadata on the fly.
+Consume MWL through findscu+dcmtk-objc and based on it and on a diccionary with rules, coerce the metadata on the fly.

@@ -38,7 +38,6 @@
 #include "ofconsol.h"
 #include "ofstdinc.h"
 
-extern "C" void* kdu_compressJPEG2K( void *data, int samplesPerPixel, int rows, int columns, int precision, bool sign, int rate, long *compressedDataSize, int num_threads);
 
 // These two macros are re-defined in the IJG header files.
 // We undefine them here and hope that IJG's configure has

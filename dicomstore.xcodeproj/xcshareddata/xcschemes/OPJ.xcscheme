@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A16A6011DED1900007E10B2"
-               BuildableName = "spoolstow"
-               BlueprintName = "spoolstow"
-               ReferencedContainer = "container:spoolstow.xcodeproj">
+               BlueprintIdentifier = "4A16859A1DE75970007E10B2"
+               BuildableName = "OPJ"
+               BlueprintName = "OPJ"
+               ReferencedContainer = "container:dicomstore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,19 +27,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4A16A6011DED1900007E10B2"
-            BuildableName = "spoolstow"
-            BlueprintName = "spoolstow"
-            ReferencedContainer = "container:spoolstow.xcodeproj">
+            BlueprintIdentifier = "4A16859A1DE75970007E10B2"
+            BuildableName = "OPJ"
+            BlueprintName = "OPJ"
+            ReferencedContainer = "container:dicomstore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Development"
@@ -55,32 +53,30 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4A16A6011DED1900007E10B2"
-            BuildableName = "spoolstow"
-            BlueprintName = "spoolstow"
-            ReferencedContainer = "container:spoolstow.xcodeproj">
+            BlueprintIdentifier = "4A16859A1DE75970007E10B2"
+            BuildableName = "OPJ"
+            BlueprintName = "OPJ"
+            ReferencedContainer = "container:dicomstore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/Shared/storescp/institutionMapping.plist"
+            argument = "ile.dcm"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Volumes/IN/wfmFIR"
+            argument = "OPJ_IN"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "http://192.168.0.7:8080/dcm4chee-arc/aets/%@/rs/studies"
+            argument = "OPJ_DONE"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;export MYSQL_PWD=pacs;/usr/local/mysql/bin/mysql --raw --skip-column-names -upacs -h 192.168.0.7 -b pacsdb -e \&quot;select access_control_id from study where study_iuid=&apos;%@&apos;\&quot; | awk -F\t &apos;{print $1}&apos;&quot;"
+            argument = "OPJ_ERR"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Development"
@@ -92,10 +88,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4A16A6011DED1900007E10B2"
-            BuildableName = "spoolstow"
-            BlueprintName = "spoolstow"
-            ReferencedContainer = "container:spoolstow.xcodeproj">
+            BlueprintIdentifier = "4A16859A1DE75970007E10B2"
+            BuildableName = "OPJ"
+            BlueprintName = "OPJ"
+            ReferencedContainer = "container:dicomstore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

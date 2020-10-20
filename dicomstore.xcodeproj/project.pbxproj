@@ -1029,7 +1029,7 @@
 		4A16A2051DECABC5007E10B2 /* oftimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = oftimer.h; path = "Binaries/dcmtk-source/ofstd/oftimer.h"; sourceTree = "<group>"; };
 		4A16A2061DECABC5007E10B2 /* oftypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = oftypes.h; path = "Binaries/dcmtk-source/ofstd/oftypes.h"; sourceTree = "<group>"; };
 		4A16A2071DECABC5007E10B2 /* ofuoset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofuoset.h; path = "Binaries/dcmtk-source/ofstd/ofuoset.h"; sourceTree = "<group>"; };
-		4A16A76F1DED1900007E10B2 /* spoolstow */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = spoolstow; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A16A76F1DED1900007E10B2 /* dicomstore */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dicomstore; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A16A7701DED1A64007E10B2 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		4A1DBBA31E5B814700D45158 /* Coerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coerce.h; sourceTree = "<group>"; };
 		4A1DBBA41E5B814700D45158 /* Coerce.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Coerce.mm; sourceTree = "<group>"; };
@@ -1684,7 +1684,7 @@
 			isa = PBXGroup;
 			children = (
 				4A1687121DE75970007E10B2 /* OPJ */,
-				4A16A76F1DED1900007E10B2 /* spoolstow */,
+				4A16A76F1DED1900007E10B2 /* dicomstore */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1699,8 +1699,8 @@
 				4A1DBBA41E5B814700D45158 /* Coerce.mm */,
 				4A0EAA062512888C00D9C369 /* categories */,
 				4A0EAA05251287C400D9C369 /* OPJ */,
-				4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */,
 				BFBF3AAF09B6820C00545F5E /* dcmtk */,
+				4A16A3101DECAC9C007E10B2 /* dcmtk (flat directory) */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -1746,7 +1746,7 @@
 			path = categories;
 			sourceTree = "<group>";
 		};
-		4A16A3101DECAC9C007E10B2 /* dcmtk-j2kr(static) */ = {
+		4A16A3101DECAC9C007E10B2 /* dcmtk (flat directory) */ = {
 			isa = PBXGroup;
 			children = (
 				4A169EFD1DECA4C1007E10B2 /* djdijp2k.cc */,
@@ -2017,7 +2017,7 @@
 				4A16A2061DECABC5007E10B2 /* oftypes.h */,
 				4A16A2071DECABC5007E10B2 /* ofuoset.h */,
 			);
-			name = "dcmtk-j2kr(static)";
+			name = "dcmtk (flat directory)";
 			sourceTree = "<group>";
 		};
 		BFBF3AAF09B6820C00545F5E /* dcmtk */ = {
@@ -2772,9 +2772,9 @@
 			productReference = 4A1687121DE75970007E10B2 /* OPJ */;
 			productType = "com.apple.product-type.tool";
 		};
-		4A16A6011DED1900007E10B2 /* spoolstow */ = {
+		4A16A6011DED1900007E10B2 /* dicomstore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4A16A76D1DED1900007E10B2 /* Build configuration list for PBXNativeTarget "spoolstow" */;
+			buildConfigurationList = 4A16A76D1DED1900007E10B2 /* Build configuration list for PBXNativeTarget "dicomstore" */;
 			buildPhases = (
 				4A16A6021DED1900007E10B2 /* Headers */,
 				4A16A6041DED1900007E10B2 /* Sources */,
@@ -2784,9 +2784,9 @@
 			);
 			dependencies = (
 			);
-			name = spoolstow;
+			name = dicomstore;
 			productName = SafeDBRebuild;
-			productReference = 4A16A76F1DED1900007E10B2 /* spoolstow */;
+			productReference = 4A16A76F1DED1900007E10B2 /* dicomstore */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -2799,7 +2799,7 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "OsiriX Team";
 			};
-			buildConfigurationList = 7E76BED8085757B70073649A /* Build configuration list for PBXProject "spoolstow" */;
+			buildConfigurationList = 7E76BED8085757B70073649A /* Build configuration list for PBXProject "dicomstore" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
@@ -2812,7 +2812,7 @@
 			projectRoot = "";
 			targets = (
 				4A16859A1DE75970007E10B2 /* OPJ */,
-				4A16A6011DED1900007E10B2 /* spoolstow */,
+				4A16A6011DED1900007E10B2 /* dicomstore */,
 			);
 		};
 /* End PBXProject section */
@@ -3675,7 +3675,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		4A16A76D1DED1900007E10B2 /* Build configuration list for PBXNativeTarget "spoolstow" */ = {
+		4A16A76D1DED1900007E10B2 /* Build configuration list for PBXNativeTarget "dicomstore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A16A76E1DED1900007E10B2 /* Development */,
@@ -3683,7 +3683,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		7E76BED8085757B70073649A /* Build configuration list for PBXProject "spoolstow" */ = {
+		7E76BED8085757B70073649A /* Build configuration list for PBXProject "dicomstore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7E76BED9085757B70073649A /* Development */,

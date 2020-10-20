@@ -49,7 +49,6 @@ void myunlink(const char * path) {
 
 static NSFileManager *fileManager=nil;
 static NSError *err=nil;
-short Use_kdu_IfAvailable = 1;
 
 BOOL folderExists(NSString *f, BOOL shouldBeEmptyAndWritable)
 {
@@ -102,18 +101,33 @@ int main(int argc, const char *argv[])
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-    NSString *DT=[[NSDate date]descriptionWithCalendarFormat:@"%Y%m%d%H%M%S%F" timeZone:nil locale:nil];
-    fileManager=[NSFileManager defaultManager];
-    NSNull *null = [NSNull null];
-    NSMutableArray *args=[NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
-    NSLog(@"%@\r\n%@",DT,[args description]);
+   NSMutableArray *args=[NSMutableArray arrayWithArray:[[NSProcessInfo processInfo] arguments]];
+   NSLog(@"%@",[args description]);
+   NSString *syntax=@"syntax:\r\nOPJ\r\n\t[1]inRelativePathOr*\r\n\t[2]inBasePath/\r\n\t[3]doneBasePath/\r\n\t[4]errBasePath/";
+   //\r\n[5..]opt\r\n\t!\"attrPath\" (delete attribute)
+   //\r\n\t!\"attrPath\"!{\"Value\":[]} (delete attribute contents)
+   //\r\n\t!\"attrPath\"!{\"Value\":[a,b]} (delete values a and b from the values of the attribute)
+
+   //\r\n\t+\"attrPath\"+{\"vr\":\"xx\"} (add empty attribute, if it does not exist)
+   //\r\n\t+\"attrPath\"+{\"vr\":\"xx\",\"Value\":[a,b]} (add values a, b to attribute)
+
+   //\r\n\r\nattrPath=ggggeeee[.0001-ggggeeee][..]
+   //\r\ndeletes performed before additions\r\n
+   NSUInteger argsCount=[args count];
+   if (argsCount<5) {NSLog(@"%@",syntax);return 1;}
+
+
+   fileManager=[NSFileManager defaultManager];
+   NSNull *null = [NSNull null];
 
     
 #pragma mark args[1] relativePaths (could be adapted to recursive)
     NSArray *r;
     if (
-        [args[1] isEqualToString:@"*"]
-        ||!(r=[fileManager contentsOfDirectoryAtPath:[args[inBasePath]stringByExpandingTildeInPath] error:&err])
+           [args[1] isEqualToString:@"*"]
+        ||!(
+            r=[fileManager contentsOfDirectoryAtPath:[args[inBasePath]stringByExpandingTildeInPath] error:&err]
+            )
         )
     {
         NSLog(@"could not get contents of %@\r%@",args[inBasePath],[err description]);
@@ -132,18 +146,6 @@ int main(int argc, const char *argv[])
         
     }
     
-    NSString *syntax=@"syntax:\r\nOPJ\r\n\t[1]inRelativePathOr*\r\n\t[2]inBasePath/\r\n\t[3]doneBasePath/\r\n\t[4]errBasePath/";
-    //\r\n[5..]opt\r\n\t!\"attrPath\" (delete attribute)
-    //\r\n\t!\"attrPath\"!{\"Value\":[]} (delete attribute contents)
-    //\r\n\t!\"attrPath\"!{\"Value\":[a,b]} (delete values a and b from the values of the attribute)
-
-    //\r\n\t+\"attrPath\"+{\"vr\":\"xx\"} (add empty attribute, if it does not exist)
-    //\r\n\t+\"attrPath\"+{\"vr\":\"xx\",\"Value\":[a,b]} (add values a, b to attribute)
-
-    //\r\n\r\nattrPath=ggggeeee[.0001-ggggeeee][..]
-    //\r\ndeletes performed before additions\r\n
-    NSUInteger argsCount=[args count];
-    if (argsCount<5) {NSLog(@"%@",syntax);return 1;}
     
     //check folders existence
     NSString *iFolder=[args[inBasePath]stringByExpandingTildeInPath];
@@ -167,7 +169,7 @@ int main(int argc, const char *argv[])
             NSMutableArray *remove=[NSMutableArray arrayWithArray:[args[i] componentsSeparatedByString:@"!"]];
             switch ([remove count]) {
                 case 2:
-                    [dDict setObject:[NSNull null] forKey:remove[1]];
+                    [dDict setObject:null forKey:remove[1]];
                     break;
                 case 3:
                     [dDict setObject:remove[2] forKey:remove[1]];
@@ -291,7 +293,7 @@ int main(int argc, const char *argv[])
         for (NSString *tagPath in [dDict allKeys])
         {
             id object=[dDict objectForKey:tagPath];
-            if (object==[NSNull null])
+            if (object==null)
             {
                 NSLog(@"delete the attribute: %@",tagPath);
             }
