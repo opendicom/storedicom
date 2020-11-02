@@ -1,3 +1,5 @@
+#import "ODLog.h"
+
 #include "Coerce.h"
 
 #include "sys/xattr.h"
@@ -55,6 +57,7 @@ BOOL setTS(NSString *path,int ts)
 
 +(NSString*)coerceFileAtPath:(NSString*)srcPath toPath:(NSString*)dstPath withInstitutionName:(NSString*)InstitutionName
 {
+@try {
     //return nil o mensaje de error
     DcmFileFormat fileformat;
     if (fileformat.loadFile( [srcPath UTF8String]).bad()) return @"[WARN] can not load";
@@ -133,6 +136,12 @@ BOOL setTS(NSString *path,int ts)
     }
     if ((fileformat.saveFile([dstPath UTF8String],EXS_LittleEndianExplicit)).good()) return nil;
     return [@"can not save coerced to: " stringByAppendingString:dstPath];
+
+   }
+   @catch (NSException *exception) {
+      return exception.reason;
+   }
+
 }
 
 @end

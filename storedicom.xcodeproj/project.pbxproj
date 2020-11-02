@@ -739,6 +739,8 @@
 		4A16A76C1DED1900007E10B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		4A1DBBA71E5B842A00D45158 /* Coerce.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A1DBBA31E5B814700D45158 /* Coerce.h */; };
 		4A1DBBA81E5B843400D45158 /* Coerce.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A1DBBA41E5B814700D45158 /* Coerce.mm */; };
+		4A55D3A8253F5E94009E9987 /* ODLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A55D3A6253F5E94009E9987 /* ODLog.h */; };
+		4A55D3A9253F5E94009E9987 /* ODLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A55D3A7253F5E94009E9987 /* ODLog.m */; };
 		841E653C1E53488A00CDA264 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A16A7701DED1A64007E10B2 /* main.mm */; };
 		8426A7A11E5F2EC9009E2EAD /* NSDictionary+opendicom.h in Headers */ = {isa = PBXBuildFile; fileRef = 8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */; };
 		8426A7A21E5F2ED2009E2EAD /* NSString+opendicom.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A04FF241CD924B900A8BB5D /* NSString+opendicom.h */; };
@@ -1029,10 +1031,12 @@
 		4A16A2051DECABC5007E10B2 /* oftimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = oftimer.h; path = "Binaries/dcmtk-source/ofstd/oftimer.h"; sourceTree = "<group>"; };
 		4A16A2061DECABC5007E10B2 /* oftypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = oftypes.h; path = "Binaries/dcmtk-source/ofstd/oftypes.h"; sourceTree = "<group>"; };
 		4A16A2071DECABC5007E10B2 /* ofuoset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofuoset.h; path = "Binaries/dcmtk-source/ofstd/ofuoset.h"; sourceTree = "<group>"; };
-		4A16A76F1DED1900007E10B2 /* dicomstore */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dicomstore; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A16A76F1DED1900007E10B2 /* storedicom */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = storedicom; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A16A7701DED1A64007E10B2 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		4A1DBBA31E5B814700D45158 /* Coerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coerce.h; sourceTree = "<group>"; };
 		4A1DBBA41E5B814700D45158 /* Coerce.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Coerce.mm; sourceTree = "<group>"; };
+		4A55D3A6253F5E94009E9987 /* ODLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODLog.h; sourceTree = "<group>"; };
+		4A55D3A7253F5E94009E9987 /* ODLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODLog.m; sourceTree = "<group>"; };
 		4AA0A5F21E48E3A2005B3E9D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8426A79D1E5F2B16009E2EAD /* NSDictionary+opendicom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+opendicom.h"; sourceTree = "<group>"; };
 		8426A79E1E5F2B16009E2EAD /* NSDictionary+opendicom.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSDictionary+opendicom.mm"; sourceTree = "<group>"; };
@@ -1684,7 +1688,7 @@
 			isa = PBXGroup;
 			children = (
 				4A1687121DE75970007E10B2 /* OPJ */,
-				4A16A76F1DED1900007E10B2 /* dicomstore */,
+				4A16A76F1DED1900007E10B2 /* storedicom */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1692,6 +1696,8 @@
 		29B97314FDCFA39411CA2CEA /* OsiriX */ = {
 			isa = PBXGroup;
 			children = (
+				4A55D3A6253F5E94009E9987 /* ODLog.h */,
+				4A55D3A7253F5E94009E9987 /* ODLog.m */,
 				4A0EBA3F1DEEDAA000ECDC6C /* TODO.txt */,
 				4A169D771DE7B8DC007E10B2 /* README.md */,
 				4A16A7701DED1A64007E10B2 /* main.mm */,
@@ -2748,6 +2754,7 @@
 				4A1DBBA71E5B842A00D45158 /* Coerce.h in Headers */,
 				8426A7A21E5F2ED2009E2EAD /* NSString+opendicom.h in Headers */,
 				4A16A6031DED1900007E10B2 /* osconfig.h in Headers */,
+				4A55D3A8253F5E94009E9987 /* ODLog.h in Headers */,
 				8426A7A11E5F2EC9009E2EAD /* NSDictionary+opendicom.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2772,9 +2779,9 @@
 			productReference = 4A1687121DE75970007E10B2 /* OPJ */;
 			productType = "com.apple.product-type.tool";
 		};
-		4A16A6011DED1900007E10B2 /* dicomstore */ = {
+		4A16A6011DED1900007E10B2 /* storedicom */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4A16A76D1DED1900007E10B2 /* Build configuration list for PBXNativeTarget "dicomstore" */;
+			buildConfigurationList = 4A16A76D1DED1900007E10B2 /* Build configuration list for PBXNativeTarget "storedicom" */;
 			buildPhases = (
 				4A16A6021DED1900007E10B2 /* Headers */,
 				4A16A6041DED1900007E10B2 /* Sources */,
@@ -2784,9 +2791,9 @@
 			);
 			dependencies = (
 			);
-			name = dicomstore;
+			name = storedicom;
 			productName = SafeDBRebuild;
-			productReference = 4A16A76F1DED1900007E10B2 /* dicomstore */;
+			productReference = 4A16A76F1DED1900007E10B2 /* storedicom */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -2799,7 +2806,7 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "OsiriX Team";
 			};
-			buildConfigurationList = 7E76BED8085757B70073649A /* Build configuration list for PBXProject "dicomstore" */;
+			buildConfigurationList = 7E76BED8085757B70073649A /* Build configuration list for PBXProject "storedicom" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
@@ -2812,7 +2819,7 @@
 			projectRoot = "";
 			targets = (
 				4A16859A1DE75970007E10B2 /* OPJ */,
-				4A16A6011DED1900007E10B2 /* dicomstore */,
+				4A16A6011DED1900007E10B2 /* storedicom */,
 			);
 		};
 /* End PBXProject section */
@@ -3297,6 +3304,7 @@
 				4A16A6681DED1900007E10B2 /* jclossy.c in Sources */,
 				4A16A6691DED1900007E10B2 /* jcmainct.c in Sources */,
 				4A16A66A1DED1900007E10B2 /* jcmarker.c in Sources */,
+				4A55D3A9253F5E94009E9987 /* ODLog.m in Sources */,
 				4A16A66B1DED1900007E10B2 /* jcmaster.c in Sources */,
 				4A16A66C1DED1900007E10B2 /* jcodec.c in Sources */,
 				4A16A66D1DED1900007E10B2 /* jcomapi.c in Sources */,
@@ -3675,7 +3683,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		4A16A76D1DED1900007E10B2 /* Build configuration list for PBXNativeTarget "dicomstore" */ = {
+		4A16A76D1DED1900007E10B2 /* Build configuration list for PBXNativeTarget "storedicom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A16A76E1DED1900007E10B2 /* Development */,
@@ -3683,7 +3691,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
 		};
-		7E76BED8085757B70073649A /* Build configuration list for PBXProject "dicomstore" */ = {
+		7E76BED8085757B70073649A /* Build configuration list for PBXProject "storedicom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7E76BED9085757B70073649A /* Development */,
