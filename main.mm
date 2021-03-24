@@ -142,7 +142,10 @@ int main(int argc, const char * argv[])
            CLASSIFIEDarray=[NSArray array];
 //JF           if (error) LOG_ERROR(@"%@",error.description);
 //JF           else LOG_ERROR(@"%@",@"CLASSIFIED contents (no error msg)");
+            if (error) NSLog(@"%@",error.description);
+            else       NSLog(@"%@",@"CLASSIFIED contents (no error msg)");
         }
+
         for (NSString *CLASSIFIEDname in CLASSIFIEDarray)
         {
             if ([CLASSIFIEDname hasPrefix:@"."]) continue;
@@ -156,6 +159,7 @@ int main(int argc, const char * argv[])
             if (!institutionName)
             {
 //JF                LOG_WARNING(@"unknown: %@",CLASSIFIEDname);
+                NSLog(@"unknown: %@",CLASSIFIEDname);
                 [fileManager moveItemAtPath:CLASSIFIEDpath
                                      toPath:[NSString stringWithFormat:@"%@/%@@%f",
                                              DISCARDED,CLASSIFIEDname,
@@ -175,9 +179,10 @@ int main(int argc, const char * argv[])
             if (![CLASSIFIEDpathContents count]) continue;
             if (([CLASSIFIEDpathContents count]==1)&&([CLASSIFIEDpathContents[0] hasPrefix:@"."])) continue;
 //JF            LOG_INFO(@"%@ -> %@",CLASSIFIEDname,institutionName);
-
+            NSLog(@"%@ -> %@",CLASSIFIEDname,institutionName);
             
 #pragma mark CLASSIFIED/STUDY loop
+
             for (NSString *StudyInstanceUID in CLASSIFIEDpathContents)
             {
                 if ([StudyInstanceUID hasPrefix:@"."]) continue;
@@ -226,6 +231,8 @@ int main(int argc, const char * argv[])
 //JF                           LOG_WARNING(@"%@ discarded. %@)",StudyInstanceUID,sqlResponseString);
 //JF                        else
 //JF                           LOG_WARNING(@"%@ discarded. No SQL response)",StudyInstanceUID);
+                        if (sqlResponseString) NSLog(@"%@ discarded. %@)",StudyInstanceUID,sqlResponseString);
+                        else NSLog(@"%@ discarded. No SQL response)",StudyInstanceUID);
                     
                         [fileManager
                          moveItemAtPath:STUDYpath
@@ -250,10 +257,18 @@ int main(int argc, const char * argv[])
 //JF                      q[@"00201208"],
 //JF                      q[@"00100020"]
 //JF                      );
+                    NSLog(@"%@ %@ (%@/%@) for patient %@ in PACS before STOW",
+                          StudyInstanceUID,
+                          q[@"00080061"],
+                          q[@"00201206"],
+                          q[@"00201208"],
+                          q[@"00100020"]
+                          );
                 }
                 else if (q[@"name"] && [q[@"name"] length])
                 {
 //JF                   LOG_WARNING(@"study %@ discarded. %@: %@",StudyInstanceUID,q[@"name"],q[@"reason"]);
+                    NSLog(@"study %@ discarded. %@: %@",StudyInstanceUID,q[@"name"],q[@"reason"]);
                    NSString *DISCARDEDpath=[NSString stringWithFormat:@"%@/%@/%@@%f",DISCARDED,CLASSIFIEDname,StudyInstanceUID,[[NSDate date]timeIntervalSinceReferenceDate
                    ]];
                    [fileManager createDirectoryAtPath:[DISCARDED stringByAppendingPathComponent:CLASSIFIEDname] withIntermediateDirectories:YES attributes:nil error:&error];
@@ -283,11 +298,14 @@ int main(int argc, const char * argv[])
 
                    
 #pragma mark SOPInstanceUID loop
+                
                    NSArray *SOPIUIDarray=[fileManager contentsOfDirectoryAtPath:STUDYpath error:&error];
                    NSUInteger SOPIUIDCount=[SOPIUIDarray count];
+                   NSLog(@"%lu",(unsigned long)SOPIUIDCount);
+                
                    [body setData:[NSData data]];
                    [packaged removeAllObjects];
-                   
+                
                    for (NSUInteger i=0; i<SOPIUIDCount; i++)
                    {
                        if ([SOPIUIDarray[i] hasPrefix:@"."]) continue;
@@ -399,6 +417,7 @@ int main(int argc, const char * argv[])
                        }
                        
                    }
+                 
                    if(![[fileManager contentsOfDirectoryAtPath:STUDYpath error:&error]count])
                    [fileManager removeItemAtPath:STUDYpath error:&error];
                    
@@ -413,7 +432,9 @@ int main(int argc, const char * argv[])
 
                    if(![[fileManager contentsOfDirectoryAtPath:STOWEDpath error:&error]count])[fileManager removeItemAtPath:STOWEDpath error:&error];
             }
+
         }
+
     }
     return 0;
 }

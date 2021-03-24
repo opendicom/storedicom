@@ -27,6 +27,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -36,8 +38,8 @@
             ReferencedContainer = "container:storedicom.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <Testables>
-      </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Development"
@@ -61,26 +63,28 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/Shared/storescp/institutionMapping.plist"
+            argument = "/Volumes/GITHUB/storedicom/deploy/institutionMapping.plist"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Volumes/IN/wfmFIR"
+            argument = "/Volumes/Archive/DCM_IMATEC"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "http://192.168.0.7:8080/dcm4chee-arc/aets/%@/rs/studies"
+            argument = "http://localhost:8080/dcm4chee-arc/aets/%@/rs/studies"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "INFO"
+            argument = "DEBUG"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "&quot;export MYSQL_PWD=pacs;/usr/local/mysql/bin/mysql --raw --skip-column-names -upacs -h 192.168.0.7 -b pacsdb -e \&quot;select access_control_id from study where study_iuid=&apos;%@&apos;\&quot; | awk -F\t &apos;{print $1}&apos;&quot;"
+            argument = "&quot;export MYSQL_PWD=pacspass;/usr/local/mysql/bin/mysql --raw --skip-column-names -upacsuser -h 127.0.0.1 -P 13306 -b pacsdb -e \&quot;select access_control_id from study where study_iuid=&apos;%@&apos;\&quot; | awk -F\\t &apos;{print $1}&apos;&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Development"

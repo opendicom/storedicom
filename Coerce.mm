@@ -71,10 +71,10 @@ BOOL setTS(NSString *path,int ts)
 
     DcmXfer original_xfer(dataset->getOriginalXfer());
     switch (original_xfer.getXfer()) {
-        case EXS_LittleEndianImplicit:
         case EXS_BigEndianExplicit:
             setTS(srcPath,tsno);
             return @"[WARN] transfer syntax not explicit little endian";
+        case EXS_LittleEndianImplicit:
         case EXS_LittleEndianExplicit:
             //discriminate por SOPClass  (xreq xdsc) hpdf tsel
             if ([sopclassstring isEqualToString:@"1.2.840.10008.5.1.4.1.1.104.2"]) setTS(srcPath,xdsc);
